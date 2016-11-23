@@ -8,11 +8,7 @@ public class Personnel extends Utilisateur {
     private int idPersonel;
 
     public Personnel(int id, String nom, String prenom, String identifiant, String password, int idPersonnel) {
-        super(id) ;
-        super(nom) ;
-        super(prenom) ;
-        super(identifiant) ;
-        super(password) ;
+        super(id, nom, prenom, identifiant, password);
         this.idPersonel = idPersonel;
     }
     public Personnel(int idPersonel) {

@@ -11,6 +11,9 @@ public abstract class Utilisateur {
     private String identifiant;
     private String password;
 
+    public Utilisateur() {
+    }
+
     public Utilisateur(int id, String nom, String prenom, String identifiant, String password) {
         this.id = id;
         this.nom = nom;
