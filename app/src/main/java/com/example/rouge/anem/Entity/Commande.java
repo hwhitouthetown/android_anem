@@ -1,4 +1,4 @@
-package com.example.rouge.anem;
+package com.example.rouge.anem.Entity;
 
 import java.util.Date;
 

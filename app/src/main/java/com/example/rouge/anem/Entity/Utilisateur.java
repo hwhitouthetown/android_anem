@@ -1,4 +1,4 @@
-package com.example.rouge.anem;
+package com.example.rouge.anem.Entity;
 
 /**
  * Created by rouge on 23/11/2016.
@@ -8,6 +8,7 @@ public abstract class Utilisateur {
     private int id;
     private String nom;
     private String prenom;
+    private String email;
     private String identifiant;
     private String password;
 
@@ -60,5 +61,13 @@ public abstract class Utilisateur {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
