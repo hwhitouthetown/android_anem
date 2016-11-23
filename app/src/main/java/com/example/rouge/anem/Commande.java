@@ -1,15 +1,17 @@
 package com.example.rouge.anem;
 
+import java.util.Date;
+
 /**
  * Created by rouge on 23/11/2016.
  */
 
-public class Command {
+public class Commande {
     private int idProduit;
     private int idUtilisateur;
-    private date dateAchat;
+    private Date dateAchat;
 
-    public Command(int idProduit, date dateAchat, int idUtilisateur) {
+    public Commande(int idProduit, Date dateAchat, int idUtilisateur) {
         this.idProduit = idProduit;
         this.dateAchat = dateAchat;
         this.idUtilisateur = idUtilisateur;
@@ -23,11 +25,11 @@ public class Command {
         this.idProduit = idProduit;
     }
 
-    public date getDateAchat() {
+    public Date getDateAchat() {
         return dateAchat;
     }
 
-    public void setDateAchat(date dateAchat) {
+    public void setDateAchat(Date dateAchat) {
         this.dateAchat = dateAchat;
     }
 
