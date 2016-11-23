@@ -1,18 +1,16 @@
-package com.example.rouge.anem;
+package com.example.rouge.anem.Entity;
 
 /**
  * Created by rouge on 23/11/2016.
  */
 
-public class Contenu {
+public class Competence {
     private int id;
     private String titre;
-    private String contenu;
 
-    public Contenu(int id, String titre, String contenu) {
+    public Competence(int id, String titre) {
         this.id = id;
         this.titre = titre;
-        this.contenu = contenu;
     }
 
     public int getId() {
@@ -29,13 +27,5 @@ public class Contenu {
 
     public void setTitre(String titre) {
         this.titre = titre;
-    }
-
-    public String getContenu() {
-        return contenu;
-    }
-
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.rouge.anem;
+package com.example.rouge.anem.Entity;
 
 /**
  * Created by rouge on 23/11/2016.
