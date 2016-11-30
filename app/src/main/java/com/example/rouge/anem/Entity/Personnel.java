@@ -22,4 +22,11 @@ public class Personnel extends Utilisateur {
     public void setIdPersonel(int idPersonel) {
         this.idPersonel = idPersonel;
     }
+
+    @Override
+    public String toString() {
+        return "Personnel{" +
+                "idPersonel=" + idPersonel +
+                '}';
+    }
 }

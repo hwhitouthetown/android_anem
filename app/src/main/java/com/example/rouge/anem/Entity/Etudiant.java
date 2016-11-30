@@ -15,4 +15,12 @@ public class Etudiant extends Utilisateur {
         super(id, nom, prenom, identifiant, password);
         this.numEtudiant = numEtudiant;
     }
+
+    public String getNumEtudiant() {
+        return numEtudiant;
+    }
+
+    public void setNumEtudiant(String numEtudiant) {
+        this.numEtudiant = numEtudiant;
+    }
 }

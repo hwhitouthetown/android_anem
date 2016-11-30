@@ -58,4 +58,40 @@ public class Produit {
     public void setUrlImange(String urlImange) {
         this.urlImange = urlImange;
     }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prix=" + prix +
+                ", prixAdherent=" + prixAdherent +
+                ", urlImange='" + urlImange + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produit)) return false;
+
+        Produit produit = (Produit) o;
+
+        if (id != produit.id) return false;
+        if (Float.compare(produit.prix, prix) != 0) return false;
+        if (Float.compare(produit.prixAdherent, prixAdherent) != 0) return false;
+        if (!nom.equals(produit.nom)) return false;
+        return urlImange != null ? urlImange.equals(produit.urlImange) : produit.urlImange == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + nom.hashCode();
+        result = 31 * result + (prix != +0.0f ? Float.floatToIntBits(prix) : 0);
+        result = 31 * result + (prixAdherent != +0.0f ? Float.floatToIntBits(prixAdherent) : 0);
+        result = 31 * result + (urlImange != null ? urlImange.hashCode() : 0);
+        return result;
+    }
 }
