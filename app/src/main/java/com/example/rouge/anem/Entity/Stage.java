@@ -11,4 +11,64 @@ public class Stage {
     private String etat;
     private Entreprise entreprise;
     private Etudiant etudiant;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public Entreprise getEntreprise() {
+        return entreprise;
+    }
+
+    public void setEntreprise(Entreprise entreprise) {
+        this.entreprise = entreprise;
+    }
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    @Override
+    public String toString() {
+        return "Stage{" +
+                "id=" + id +
+                ", intitule='" + intitule + '\'' +
+                ", description='" + description + '\'' +
+                ", etat='" + etat + '\'' +
+                ", entreprise=" + entreprise +
+                ", etudiant=" + etudiant +
+                '}';
+    }
 }

@@ -58,4 +58,15 @@ public class Promotion {
     public void setNiveau(String niveau) {
         this.niveau = niveau;
     }
+
+    @Override
+    public String toString() {
+        return "Promotion{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", anneeDebut='" + anneeDebut + '\'' +
+                ", anneeFin='" + anneeFin + '\'' +
+                ", niveau='" + niveau + '\'' +
+                '}';
+    }
 }
