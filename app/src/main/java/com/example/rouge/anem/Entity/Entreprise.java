@@ -18,6 +18,7 @@ public class Entreprise {
         this.nom = nom;
     }
 
+
     public int getId() {
         return id;
     }
