@@ -1,5 +1,6 @@
 package com.example.rouge.anem.gcm;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -41,19 +43,20 @@ public class RegisterToGCM {
     Context context;
 
     String regid;
+
     public RegisterToGCM(Context mContext, SharedPreferences prefs) {
-        mcontext=mContext;
-        this.prefs=prefs;
-            gcm = GoogleCloudMessaging.getInstance(mContext);
-            regid = getRegistrationId();
+        mcontext = mContext;
+        this.prefs = prefs;
+        gcm = GoogleCloudMessaging.getInstance(mContext);
+        regid = getRegistrationId();
+        registerInBackground();
+        if (regid.isEmpty()) {
 
-            if (regid.isEmpty()) {
-                registerInBackground();
 
-            }else   {
+        } else {
 
 //                mDisplay.append(regid + "\n");
-            }
+        }
 
     }
 
@@ -142,12 +145,10 @@ public class RegisterToGCM {
 //                mDisplay.append(msg + "\n");
                 AccountManager accountManager = AccountManager.get(mcontext);
                 Account account = getAccount(accountManager);
-                ServerUtilities.register(mcontext, account.name,"caca@gmail.com",regid);
+                ServerUtilities.register(mcontext, account.name, "caca@gmail.com", regid);
             }
         }.execute(null, null, null);
     }
-
-
 
 
     /**
@@ -173,6 +174,7 @@ public class RegisterToGCM {
     private void sendRegistrationIdToBackend() {
         // Your implementation here.
     }
+
     private static Account getAccount(AccountManager accountManager) {
         Account[] accounts = accountManager.getAccountsByType("com.google");
         Account account;
