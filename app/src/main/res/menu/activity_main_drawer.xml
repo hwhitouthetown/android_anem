@@ -8,11 +8,15 @@
             android:title="Boutique" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
             android:title="Utilisateurs" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_domain_black_24dp"
+            android:title="Entreprise" />
+        <item
+            android:id="@+id/stage"
+            android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Stages" />
     </group>
 
