@@ -1,14 +1,19 @@
 package com.example.rouge.anem.Entreprise;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.rouge.anem.Entity.Entreprise;
+import com.example.rouge.anem.Etudiant.EtudiantActivity;
+import com.example.rouge.anem.Main.MainActivity;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
@@ -39,11 +44,10 @@ public class EntrepriseActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.lvListe);
         patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
         listView.setAdapter(patientAdapter);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
+        //Utilisation de la classe API
         try {
             String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
-            AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback).execute(mesparams);
+            myModel.execute(mesparams);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
@@ -55,6 +59,24 @@ public class EntrepriseActivity extends AppCompatActivity {
         patientAdapter.setListEntreprise(listeEntreprise);
         patientAdapter.notifyDataSetChanged();
         result = result;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.plus, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_plus) {
+            startActivity(new Intent(this, NewEntrepriseActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
