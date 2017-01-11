@@ -43,9 +43,8 @@ public class NewEntrepriseActivity extends AppCompatActivity {
             }
         };
         try {
-            String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             Api api = new Api(callback);
-            api.execute(mesparams);
+            entreprise.save(api,getBaseContext());
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }

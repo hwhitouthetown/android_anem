@@ -1,5 +1,11 @@
 package com.example.rouge.anem.Entity;
 
+import android.content.Context;
+
+import com.example.rouge.anem.Tools.Api;
+import com.example.rouge.anem.Tools.Util;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,6 +33,18 @@ public class Entreprise {
             e.add(new Entreprise(Integer.parseInt(item.get("id")), item.get("numtel"), item.get("adresse"), item.get("nom")));
         }
         return e;
+    }
+
+    public void save(Api api, Context context) throws IOException {
+        HashMap<String,String> param = new HashMap<>();
+        param.put("id",Integer.toString(id));
+        param.put("nom",nom);
+        param.put("tel",numTel);
+        param.put("adresse",adresse);
+        api.setMethod("POST");
+        api.setParameters(param);
+        String[] url = {Util.getProperty("url.update_entreprise", context)};
+        api.execute(url);
     }
 
     public int getId() {

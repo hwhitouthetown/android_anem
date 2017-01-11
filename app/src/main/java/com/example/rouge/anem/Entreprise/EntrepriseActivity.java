@@ -45,12 +45,22 @@ public class EntrepriseActivity extends AppCompatActivity {
         patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
         listView.setAdapter(patientAdapter);
         //Utilisation de la classe API
+    }
+
+    public void refresh(){
         try {
             String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             myModel.execute(mesparams);
+            myModel = new Api(this.callback);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        refresh();
     }
 
     public void didReceivedData(){
