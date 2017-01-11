@@ -22,10 +22,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
+import com.example.rouge.anem.Etudiant.EtudiantActivity;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.gcm.RegisterToGCM;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -123,9 +125,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
+            MenuItem shop = (MenuItem) findViewById(R.id.nav_camera);
+            shop.setOnMenuItemClickListener((MenuItem.OnMenuItemClickListener) this);
+            setContentView(R.layout.activity_shop);
+
+        } else if (id == R.id.nav_gallery) {
+            Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
+            startActivity(j);
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(MainActivity.this, EntrepriseActivity.class);
             startActivity(i);

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/PageRuler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ruler128"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="Prix"
+            android:layout_below="@+id/PageRuler"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="50dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ButtonRulerAdd"
+        android:layout_gravity="bottom|center"
+        android:text="Commander"
+        android:fontFamily="sans-serif-smallcaps"
+        />
+
+</LinearLayout>
