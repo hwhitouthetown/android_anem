@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
+import com.example.rouge.anem.Etudiant.EtudiantActivity;
+
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.gcm.RegisterToGCM;
 import com.google.android.gms.common.ConnectionResult;
@@ -125,7 +127,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
+            startActivity(j);
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(MainActivity.this, EntrepriseActivity.class);
             startActivity(i);
