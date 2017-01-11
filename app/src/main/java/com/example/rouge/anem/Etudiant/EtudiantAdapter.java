@@ -53,6 +53,9 @@ public class EtudiantAdapter extends BaseAdapter {
         holder.textViewNom.setText(listEtudiant.get(position).getNom());
         return convertView;
     }
+    public void setListEtudiant(List<Utilisateur> listEtudiant) {
+        this.listEtudiant = listEtudiant;
+    }
 
     private class ViewHolder {
         TextView textViewNom;
