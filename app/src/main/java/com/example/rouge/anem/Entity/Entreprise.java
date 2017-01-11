@@ -1,5 +1,8 @@
 package com.example.rouge.anem.Entity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by rouge on 23/11/2016.
  */
@@ -18,6 +21,13 @@ public class Entreprise {
         this.nom = nom;
     }
 
+    public static ArrayList<Entreprise> getEntreprisesFromWS(ArrayList<HashMap<String,String>> ws){
+        ArrayList<Entreprise> e = new ArrayList<Entreprise>();
+        for (HashMap<String, String> item: ws) {
+            e.add(new Entreprise(Integer.parseInt(item.get("id")), item.get("numtel"), item.get("adresse"), item.get("nom")));
+        }
+        return e;
+    }
 
     public int getId() {
         return id;

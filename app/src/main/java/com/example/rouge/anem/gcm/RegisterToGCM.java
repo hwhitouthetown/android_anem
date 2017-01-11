@@ -145,7 +145,11 @@ public class RegisterToGCM {
 //                mDisplay.append(msg + "\n");
                 AccountManager accountManager = AccountManager.get(mcontext);
                 Account account = getAccount(accountManager);
-                ServerUtilities.register(mcontext, account.name, "caca@gmail.com", regid);
+                try {
+                    ServerUtilities.register(mcontext, account.name, "caca@gmail.com", regid);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }.execute(null, null, null);
     }

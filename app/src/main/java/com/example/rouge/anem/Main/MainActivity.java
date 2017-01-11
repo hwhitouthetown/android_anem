@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
 
-            startActivity(new Intent(this, ShopActivity.class));
+            startActivity(new Intent(MainActivity.this, ShopActivity.class));
             //setContentView(R.layout.activity_shop);
 
         } else if (id == R.id.nav_gallery) {

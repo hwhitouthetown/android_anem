@@ -3,10 +3,10 @@ package com.example.rouge.anem.gcm;
 /**
  * Created by darkvador on 14/04/15.
  */
-import static com.example.rouge.anem.gcm.CommonUtilities.SERVER_URL;
 import static com.example.rouge.anem.gcm.CommonUtilities.TAG;
 import static com.example.rouge.anem.gcm.CommonUtilities.displayMessage;
 
+import java.io.IOException;
 import java.util.Random;
 
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.rouge.anem.R;
+import com.example.rouge.anem.Tools.Util;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 
@@ -26,9 +27,9 @@ public final class ServerUtilities {
      * Register this account/device pair within the server.
      *
      */
-    static void register(final Context context, String name, String email, final String regId) {
+    static void register(final Context context, String name, String email, final String regId) throws IOException {
         Log.i(TAG, "registering device (regId = " + regId + ")");
-        String serverUrl = SERVER_URL;
+        String serverUrl = Util.getProperty("url.register_notification", context);
         String[] params = {serverUrl,regId,name,email};
 
         long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
@@ -53,9 +54,9 @@ public final class ServerUtilities {
     /**
      * Unregister this account/device pair within the server.
      */
-    static void unregister(final Context context, final String regId) {
+    static void unregister(final Context context, final String regId) throws IOException {
         Log.i(TAG, "unregistering device (regId = " + regId + ")");
-        String serverUrl = SERVER_URL + "/unregister";
+        String serverUrl = Util.getProperty("url.register_notification", context) + "/unregister";
         String[] params = {serverUrl,regId};
            post(params);
             //GCMRegistrar.setRegisteredOnServer(context, false);
