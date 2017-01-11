@@ -1,5 +1,7 @@
 package com.example.rouge.anem.Entity;
 
+import org.json.JSONObject;
+
 /**
  * Created by rouge on 23/11/2016.
  */

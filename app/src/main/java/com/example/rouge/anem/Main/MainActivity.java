@@ -21,6 +21,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+<<<<<<< HEAD
+=======
+import com.example.rouge.anem.Entreprise.EntrepriseActivity;
+import com.example.rouge.anem.Etudiant.EtudiantActivity;
+
+>>>>>>> origin/master
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.gcm.RegisterToGCM;
@@ -130,7 +136,8 @@ public class MainActivity extends AppCompatActivity
             setContentView(R.layout.activity_shop);
 
         } else if (id == R.id.nav_gallery) {
-
+            Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
+            startActivity(j);
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(MainActivity.this, EntrepriseActivity.class);
             startActivity(i);
