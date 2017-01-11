@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="5"
+    android:layout_marginLeft="1dp">
+
+    <ImageView
+        android:id="@+id/bottle_opener"
+        android:src="@drawable/bottle_opener"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_column="1"
+        android:layout_row="1"
+        />
+
+    <ImageView
+        android:id="@+id/pen"
+        android:src="@drawable/pen"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_row="2"
+        android:layout_column="1" />
+
+    <ImageView
+        android:id="@+id/tshirt"
+        android:src="@drawable/tshirt"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_row="3"
+        android:layout_column="1" />
+
+    <ImageView
+        android:id="@+id/ruler"
+        android:src="@drawable/ruler2"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_row="4"
+        android:layout_column="1" />
+
+    <ImageView
+        android:id="@+id/ecocup"
+        android:src="@drawable/icon64"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_row="5"
+        android:layout_column="1" />
+
+    <ImageView
+        android:id="@+id/sticker"
+        android:src="@drawable/sticker64"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:layout_row="6"
+        android:layout_column="1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/books64"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="15dp"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/TextPoly"
+        android:text="Polycopié"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextDécap"
+        android:text="Décapsuleur"
+        android:layout_row="1"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextStylo"
+        android:text="Stylo"
+        android:layout_row="2"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextShirt"
+        android:text="T-Shirt"
+        android:layout_row="3"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextRegle"
+        android:text="Règle"
+        android:layout_row="4"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextEcoCup"
+        android:text="EcoCup"
+        android:layout_row="5"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextSticker"
+        android:text="Sticker"
+        android:layout_row="6"
+        android:layout_column="2"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextPrixPoly"
+        android:text="Prix"
+        android:layout_row="0"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        />
+
+    <TextView
+        android:id="@+id/TextPrixDecap"
+        android:text="Prix"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        />
+
+    <TextView
+        android:id="@+id/TextPrixStylo"
+        android:text="Prix"
+        android:layout_row="2"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        />
+
+    <TextView
+        android:id="@+id/TextPrixTshirt"
+        android:text="Prix"
+        android:layout_row="3"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextPrixRegle"
+        android:text="Prix"
+        android:layout_row="4"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextPrixEcoCup"
+        android:text="Prix"
+        android:layout_row="5"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <TextView
+        android:id="@+id/TextPrixSticker"
+        android:text="Prix"
+        android:layout_row="6"
+        android:layout_column="3"
+        android:layout_gravity="center|left"
+        android:textSize="16dip"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddPoly"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="0"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddDecap"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="1"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddStylo"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="2"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddTshirt"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="3"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddRegle"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="4"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddEcoCup"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="5"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+
+    <Button
+        android:id="@+id/AddSticker"
+        android:text="Commander"
+        android:layout_column="4"
+        android:layout_row="6"
+        android:layout_gravity="center|right"
+        android:fontFamily="sans-serif-smallcaps"
+
+        />
+</GridLayout>
