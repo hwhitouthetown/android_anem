@@ -126,9 +126,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
 
-            MenuItem shop = (MenuItem) findViewById(R.id.nav_camera);
-            shop.setOnMenuItemClickListener((MenuItem.OnMenuItemClickListener) this);
-            setContentView(R.layout.activity_shop);
+            startActivity(new Intent(this, ShopActivity.class));
+            //setContentView(R.layout.activity_shop);
 
         } else if (id == R.id.nav_gallery) {
             Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
