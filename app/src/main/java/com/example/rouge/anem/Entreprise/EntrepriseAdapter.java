@@ -22,16 +22,16 @@ public class EntrepriseAdapter extends BaseAdapter {
 
     public EntrepriseAdapter(Context context, List<Entreprise> vListEntreprise) {
         layoutInflater = LayoutInflater.from(context);
-        listEntreprise = vListEntreprise;
+        setListEntreprise(vListEntreprise);
     }
     @Override
     public int getCount() {
-        return listEntreprise.size();
+        return getListEntreprise().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listEntreprise.get(position);
+        return getListEntreprise().get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -45,16 +45,27 @@ public class EntrepriseAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.liste_entreprise, null);
             holder.textViewNom = (TextView) convertView.findViewById(R.id.vueNom);
+            holder.textViewAdresse = (TextView) convertView.findViewById(R.id.vueAdresse);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textViewNom.setText(listEntreprise.get(position).getNom());
+        holder.textViewNom.setText(getListEntreprise().get(position).getNom());
+        holder.textViewAdresse.setText(getListEntreprise().get(position).getAdresse());
         return convertView;
+    }
+
+    public List<Entreprise> getListEntreprise() {
+        return listEntreprise;
+    }
+
+    public void setListEntreprise(List<Entreprise> listEntreprise) {
+        this.listEntreprise = listEntreprise;
     }
 
     private class ViewHolder {
         TextView textViewNom;
+        TextView textViewAdresse;
     }
 }

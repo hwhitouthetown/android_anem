@@ -3,30 +3,31 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/uneEntreprise"
-    android:background="#ff000381"
-    android:padding="2dp">
+    android:background="#fafafafa"
+    android:padding="2dp"
+    android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:baselineAligned="false"
         android:layout_gravity="center_vertical"
-        android:background="#ff02525c">
+        android:background="#fafafafa"
+        android:layout_weight="12.50"
+        android:layout_height="100px">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/vueNom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/NomPrenom"
-            android:layout_gravity="left">
-
-            <TextView
-                android:id="@+id/vueNom"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="5dip"/>
-        </LinearLayout>
+            android:paddingLeft="5dip"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/vueAdresse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dip"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.example.rouge.anem.Shop;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -14,7 +15,7 @@ import com.example.rouge.anem.R;
  * Created by laureduchemin on 04/01/2017.
  */
 
-public class ShopActivity extends MainActivity {
+public class ShopActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

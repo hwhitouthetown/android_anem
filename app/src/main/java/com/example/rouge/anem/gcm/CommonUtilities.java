@@ -6,10 +6,9 @@ package com.example.rouge.anem.gcm;
 import android.content.Context;
 import android.content.Intent;
 
-public final class CommonUtilities {
+import com.example.rouge.anem.Tools.Util;
 
-    // give your server registration url here
-    static final String SERVER_URL = "http://rdelaporte.alwaysdata.net/gcm_anem/register.php";
+public final class CommonUtilities {
 
     // Google project id
     static final String SENDER_ID = "111916247427";

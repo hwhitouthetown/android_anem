@@ -3,6 +3,7 @@ package com.example.rouge.anem.Entreprise;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ public class EntrepriseActivity extends AppCompatActivity {
     private Api myModel;
     private ListView listView;
     private Callback callback;
+    private EntrepriseAdapter patientAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,10 @@ public class EntrepriseActivity extends AppCompatActivity {
         myModel = new Api(this.callback);
         listeEntreprise = new ArrayList<Entreprise>();
         listView = (ListView)findViewById(R.id.lvListe);
-        EntrepriseAdapter patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
+        patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
         listView.setAdapter(patientAdapter);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         try {
             String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback).execute(mesparams);
@@ -47,6 +51,9 @@ public class EntrepriseActivity extends AppCompatActivity {
 
     public void didReceivedData(){
         ArrayList<HashMap<String,String>> result = this.callback.getResult();
+        listeEntreprise = Entreprise.getEntreprisesFromWS(result);
+        patientAdapter.setListEntreprise(listeEntreprise);
+        patientAdapter.notifyDataSetChanged();
         result = result;
     }
 

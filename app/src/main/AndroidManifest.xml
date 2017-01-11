@@ -55,10 +55,6 @@
         <activity android:name=".Entreprise.EntrepriseActivity" />
         <activity android:name=".Etudiant.EtudiantActivity" />
         <activity android:name=".Shop.ShopActivity"/>
-        <activity
-            android:name=".Main.Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

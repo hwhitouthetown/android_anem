@@ -81,6 +81,7 @@ public class AsyncSignUpNotification extends AsyncTask<String, String, Boolean> 
                         conn.getInputStream(), "utf-8"));
                 String line = null;
                 while ((line = br.readLine()) != null) {
+                    Log.v("response", line);
                     stringBuilder.append(line);
                 }
                 br.close();
