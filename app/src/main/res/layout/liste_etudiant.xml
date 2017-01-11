@@ -3,4 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/vueNom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dip"
+        android:layout_weight="1" />
+    <TextView
+        android:id="@+id/vueAdresse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dip"
+        android:layout_weight="1" />
+
 </LinearLayout>

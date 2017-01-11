@@ -25,6 +25,7 @@ public class EtudiantActivity extends AppCompatActivity {
     private Api myModel;
     private ListView listView;
     private Callback callback;
+    private EtudiantAdapter patientAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class EtudiantActivity extends AppCompatActivity {
         };
         myModel = new Api(this.callback);
         listeEtudiant = new ArrayList<Utilisateur>();
-        listView = (ListView)findViewById(R.id.lvListe);
-        EtudiantAdapter patientAdapter = new EtudiantAdapter(getBaseContext(), listeEtudiant);
+        listView = (ListView)findViewById(R.id.eListe);
+        patientAdapter = new EtudiantAdapter(getBaseContext(), listeEtudiant);
         listView.setAdapter(patientAdapter);
         try {
             String[] mesparams = {Util.getProperty("url.etudiant", getBaseContext())};
@@ -50,6 +51,9 @@ public class EtudiantActivity extends AppCompatActivity {
 
     public void didReceivedData(){
         ArrayList<HashMap<String,String>> result = this.callback.getResult();
+        listeEtudiant = Utilisateur.getUtilisateursFromWS(result);
+        patientAdapter.setListEtudiant(listeEtudiant);
+        patientAdapter.notifyDataSetChanged();
         result = result;
     }
 

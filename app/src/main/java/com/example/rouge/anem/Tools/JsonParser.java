@@ -49,7 +49,22 @@ public class JsonParser {
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            val.put(name, reader.nextString());
+            try{
+                val.put(name, reader.nextString());
+            }
+            catch(IllegalStateException i){
+                try{
+                val.put(name, String.valueOf(reader.nextBoolean()));}
+                catch (IllegalStateException e){
+                    try{
+                        reader.beginArray();
+                        reader.endArray();
+                    }catch(IllegalStateException f){
+                        reader.beginObject();
+                        reader.endObject();
+                    }
+                }
+            }
         }
         reader.endObject();
         return val;
