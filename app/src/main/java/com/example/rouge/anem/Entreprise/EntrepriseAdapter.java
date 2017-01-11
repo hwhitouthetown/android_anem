@@ -23,6 +23,7 @@ public class EntrepriseAdapter extends BaseAdapter {
     public EntrepriseAdapter(Context context, List<Entreprise> vListEntreprise) {
         layoutInflater = LayoutInflater.from(context);
         setListEntreprise(vListEntreprise);
+
     }
     @Override
     public int getCount() {
