@@ -1,6 +1,5 @@
 package com.example.rouge.anem.Main;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +23,7 @@ import android.view.View;
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.Etudiant.EtudiantActivity;
 import com.example.rouge.anem.R;
+import com.example.rouge.anem.Shop.ShopActivity;
 import com.example.rouge.anem.gcm.RegisterToGCM;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;

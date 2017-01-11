@@ -1,4 +1,4 @@
-package com.example.rouge.anem.Main;
+package com.example.rouge.anem.Shop;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,13 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.example.rouge.anem.Main.MainActivity;
 import com.example.rouge.anem.R;
 
 /**
  * Created by laureduchemin on 04/01/2017.
  */
 
-public class ShopActivity extends MainActivity{
+public class ShopActivity extends MainActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
