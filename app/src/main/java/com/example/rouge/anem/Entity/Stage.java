@@ -1,5 +1,8 @@
 package com.example.rouge.anem.Entity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by rouge on 23/11/2016.
  */
@@ -11,6 +14,23 @@ public class Stage {
     private String etat;
     private Entreprise entreprise;
     private Utilisateur etudiant;
+
+    public Stage(int id, String intitule, String description, String etat, Entreprise entreprise, Utilisateur etudiant) {
+        this.id = id;
+        this.intitule = intitule;
+        this.description = description;
+        this.etat = etat;
+        this.entreprise = entreprise;
+        this.etudiant = etudiant;
+    }
+
+    public static ArrayList<Stage> getStagesFromWS(ArrayList<HashMap<String,String>> ws){
+        ArrayList<Stage> e = new ArrayList<Stage>();
+        for (HashMap<String, String> item: ws) {
+            e.add(new Stage(Integer.parseInt(item.get("id")), item.get("intitule"), item.get("description"), item.get("etat"), item.get("entreprise"), item.get("etudiant")));
+        }
+        return e;
+    }
 
     public int getId() {
         return id;

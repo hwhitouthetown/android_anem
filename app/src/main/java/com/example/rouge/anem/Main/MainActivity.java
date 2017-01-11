@@ -24,6 +24,7 @@ import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.Etudiant.EtudiantActivity;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Shop.ShopActivity;
+import com.example.rouge.anem.Stage.StageActivity;
 import com.example.rouge.anem.gcm.RegisterToGCM;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -139,6 +140,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_who) {
 
+        } else if (id == R.id.stage) {
+            Intent i = new Intent(MainActivity.this, StageActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
