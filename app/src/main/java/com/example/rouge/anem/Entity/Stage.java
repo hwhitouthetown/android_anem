@@ -10,7 +10,7 @@ public class Stage {
     private String description;
     private String etat;
     private Entreprise entreprise;
-    private Etudiant etudiant;
+    private Utilisateur etudiant;
 
     public int getId() {
         return id;
@@ -52,11 +52,11 @@ public class Stage {
         this.entreprise = entreprise;
     }
 
-    public Etudiant getEtudiant() {
+    public Utilisateur getEtudiant() {
         return etudiant;
     }
 
-    public void setEtudiant(Etudiant etudiant) {
+    public void setEtudiant(Utilisateur etudiant) {
         this.etudiant = etudiant;
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.rouge.anem.Entity.Etudiant;
+import com.example.rouge.anem.Entity.Utilisateur;
 import com.example.rouge.anem.R;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
  */
 
 public class EtudiantAdapter extends BaseAdapter {
-    private List<Etudiant> listEtudiant;
+    private List<Utilisateur> listEtudiant;
     private LayoutInflater layoutInflater;
 
-    public EtudiantAdapter(Context context, List<Etudiant> vListEtudiant) {
+    public EtudiantAdapter(Context context, List<Utilisateur> vListEtudiant) {
         layoutInflater = LayoutInflater.from(context);
         listEtudiant = vListEtudiant;
     }

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.example.rouge.anem.Entity.Etudiant;
+import com.example.rouge.anem.Entity.Utilisateur;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 
 public class EtudiantActivity extends AppCompatActivity {
-    private ArrayList<Etudiant> listeEtudiant;
+    private ArrayList<Utilisateur> listeEtudiant;
     private Api myModel;
     private ListView listView;
     private Callback callback;
@@ -36,7 +36,7 @@ public class EtudiantActivity extends AppCompatActivity {
             }
         };
         myModel = new Api(this.callback);
-        listeEtudiant = new ArrayList<Etudiant>();
+        listeEtudiant = new ArrayList<Utilisateur>();
         listView = (ListView)findViewById(R.id.lvListe);
         EtudiantAdapter patientAdapter = new EtudiantAdapter(getBaseContext(), listeEtudiant);
         listView.setAdapter(patientAdapter);

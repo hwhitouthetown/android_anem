@@ -9,18 +9,13 @@ public abstract class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
-    private String identifiant;
-    private String password;
-
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, String identifiant, String password) {
+    public Utilisateur(int id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.identifiant = identifiant;
-        this.password = password;
     }
 
     public int getId() {
@@ -45,22 +40,6 @@ public abstract class Utilisateur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public String getIdentifiant() {
-        return identifiant;
-    }
-
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {

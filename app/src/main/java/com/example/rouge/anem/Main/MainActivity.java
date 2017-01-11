@@ -21,14 +21,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-<<<<<<< HEAD
-=======
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.Etudiant.EtudiantActivity;
-
->>>>>>> origin/master
 import com.example.rouge.anem.R;
-import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.gcm.RegisterToGCM;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
