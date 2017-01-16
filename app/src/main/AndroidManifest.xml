@@ -54,6 +54,7 @@
 
         <activity android:name=".Entreprise.EntrepriseActivity" />
         <activity android:name=".Etudiant.EtudiantActivity" />
+        <activity android:name=".Stage.StageActivity" />
         <activity android:name=".Shop.ShopActivity" />
         <activity android:name=".Entreprise.NewEntrepriseActivity"></activity>
     </application>
