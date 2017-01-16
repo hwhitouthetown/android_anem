@@ -39,7 +39,7 @@ public class JsonParser {
             reader.endArray();
         }
         catch(IllegalStateException i) {
-            //vreturn.add(readMessage(reader));
+            vreturn.add(readMessage(reader));
         }
 
         return vreturn;
