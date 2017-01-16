@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rouge.anem.Entity.AuthenticatedUser;
 import com.example.rouge.anem.Entity.Entreprise;
@@ -51,10 +52,13 @@ public class NotifyActivity extends AppCompatActivity {
             String nom = AuthenticatedUser.getInstance().getNom();
             param.put("allUsers","");
             param.put("message",prenom+" "+nom+" a dit "+((EditText) findViewById(R.id.message)).getText().toString());
+            ((EditText) findViewById(R.id.message)).setText("");
             api.setMethod("POST");
             api.setParameters(param);
             String[] url = {Util.getProperty("url.notification", getBaseContext())};
             api.execute(url);
+            Toast toast = Toast.makeText(getBaseContext(), "Message envoyé", Toast.LENGTH_SHORT);
+            toast.show();
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
