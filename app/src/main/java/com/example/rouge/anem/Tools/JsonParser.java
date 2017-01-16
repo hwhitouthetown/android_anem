@@ -29,6 +29,7 @@ public class JsonParser {
         }
     }
 
+
     public ArrayList<HashMap<String,Object>> readMessagesArray(JsonReader reader) throws IOException {
         ArrayList<HashMap<String,Object>> vreturn = new ArrayList<>();
 
@@ -36,7 +37,7 @@ public class JsonParser {
         while (reader.hasNext()) {
             vreturn.add(readMessage(reader));
         }
-        reader.endArray();
+
         return vreturn;
     }
 

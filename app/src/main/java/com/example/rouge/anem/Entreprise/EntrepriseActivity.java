@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -20,6 +21,7 @@ import com.example.rouge.anem.Tools.Callback;
 import com.example.rouge.anem.Tools.Util;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,13 +46,30 @@ public class EntrepriseActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.lvListe);
         patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
         listView.setAdapter(patientAdapter);
-        //Utilisation de la classe API
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myIntent = new Intent(EntrepriseActivity.this, NewEntrepriseActivity.class);
+                myIntent.putExtra("entreprise", (Serializable) listeEntreprise.get(position));
+                startActivity(myIntent);
+            }
+        });
+    }
+
+    public void refresh(){
         try {
             String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             myModel.execute(mesparams);
+            myModel = new Api(this.callback);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        refresh();
     }
 
     public void didReceivedData(){
@@ -58,12 +77,10 @@ public class EntrepriseActivity extends AppCompatActivity {
         listeEntreprise = Entreprise.getEntreprisesFromWS(result);
         patientAdapter.setListEntreprise(listeEntreprise);
         patientAdapter.notifyDataSetChanged();
-        result = result;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.plus, menu);
         return true;
     }
