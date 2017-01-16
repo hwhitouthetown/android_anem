@@ -24,10 +24,10 @@ public class Stage {
         this.etudiant = etudiant;
     }
 
-    public static ArrayList<Stage> getStagesFromWS(ArrayList<HashMap<String,String>> ws){
+    public static ArrayList<Stage> getStagesFromWS(ArrayList<HashMap<String,Object>> ws){
         ArrayList<Stage> e = new ArrayList<Stage>();
-        for (HashMap<String, String> item: ws) {
-            e.add(new Stage(Integer.parseInt(item.get("id")), item.get("intitule"), item.get("description"), item.get("etat"), item.get("entreprise"), item.get("etudiant")));
+        for (HashMap<String, Object> item: ws) {
+            e.add(new Stage(Integer.parseInt((String)item.get("id")), (String)item.get("intitule"), (String)item.get("description"), (String)item.get("etat"), Entreprise.getEntreprisesFromWS((ArrayList<HashMap<String,Object>>)item.get("identreprise")).get(0), Utilisateur.getUtilisateursFromWS((ArrayList<HashMap<String,Object>>)item.get("igetudiant")).get(0)));
         }
         return e;
     }

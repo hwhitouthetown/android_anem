@@ -21,7 +21,7 @@ public class Api extends AsyncTask<String, String, Boolean> {
     private JsonParser jsonParser;
     private HashMap<String,String> parameters;
     private String method;
-    ArrayList<HashMap<String,String>> result;
+    ArrayList<HashMap<String,Object>> result;
 
     public Api(Callback<Void> callback){
         this.setMethod("GET");
