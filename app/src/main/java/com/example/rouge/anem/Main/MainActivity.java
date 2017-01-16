@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, NotifyActivity.class);
+                startActivity(i);
             }
         });
 
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(MainActivity.this, StageActivity.class);
             startActivity(i);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
