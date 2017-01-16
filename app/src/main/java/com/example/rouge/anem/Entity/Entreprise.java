@@ -6,6 +6,7 @@ import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Util;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +14,7 @@ import java.util.HashMap;
  * Created by rouge on 23/11/2016.
  */
 
-public class Entreprise {
+public class Entreprise implements Serializable {
 
     private int id;
     private String nom;
@@ -25,6 +26,9 @@ public class Entreprise {
         this.numTel = numTel;
         this.adresse = adresse;
         this.nom = nom;
+    }
+
+    public Entreprise() {
     }
 
     public static ArrayList<Entreprise> getEntreprisesFromWS(ArrayList<HashMap<String,String>> ws){
