@@ -27,7 +27,16 @@ public class Stage {
     public static ArrayList<Stage> getStagesFromWS(ArrayList<HashMap<String,Object>> ws){
         ArrayList<Stage> e = new ArrayList<Stage>();
         for (HashMap<String, Object> item: ws) {
-            e.add(new Stage(Integer.parseInt((String)item.get("id")), (String)item.get("intitule"), (String)item.get("description"), (String)item.get("etat"), Entreprise.getEntreprisesFromWS((ArrayList<HashMap<String,Object>>)item.get("identreprise")).get(0), Utilisateur.getUtilisateursFromWS((ArrayList<HashMap<String,Object>>)item.get("igetudiant")).get(0)));
+            ArrayList<HashMap<String,Object>> ent = new ArrayList<>();
+            ent.add((HashMap<String,Object>)item.get("identreprise"));
+            ArrayList<HashMap<String,Object>> u = new ArrayList<>();
+            u.add((HashMap<String,Object>)item.get("idetudiant"));
+            e.add(new Stage(Integer.parseInt((String)item.get("id")),
+                    (String)item.get("intitule"),
+                    (String)item.get("description"),
+                    (String)item.get("etat"),
+                    Entreprise.getEntreprisesFromWS(ent).get(0),
+                    Utilisateur.getUtilisateursFromWS(u).get(0)));
         }
         return e;
     }

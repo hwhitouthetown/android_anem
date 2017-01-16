@@ -29,13 +29,17 @@ public class JsonParser {
         }
     }
 
-
     public ArrayList<HashMap<String,Object>> readMessagesArray(JsonReader reader) throws IOException {
         ArrayList<HashMap<String,Object>> vreturn = new ArrayList<>();
-
-        reader.beginArray();
-        while (reader.hasNext()) {
-            vreturn.add(readMessage(reader));
+        try{
+            reader.beginArray();
+            while (reader.hasNext()) {
+                vreturn.add(readMessage(reader));
+            }
+            reader.endArray();
+        }
+        catch(IllegalStateException i) {
+            //vreturn.add(readMessage(reader));
         }
 
         return vreturn;
@@ -59,10 +63,14 @@ public class JsonParser {
                 catch (IllegalStateException e){
                     try{
                         reader.beginArray();
+                        try{
+                            val.put(name, readMessage(reader));
+                        }catch(IllegalStateException f) {
+
+                        }
                         reader.endArray();
                     }catch(IllegalStateException f){
-                        reader.beginObject();
-                        reader.endObject();
+                        val.put(name, readMessage(reader));
                     }
                 }
             }
