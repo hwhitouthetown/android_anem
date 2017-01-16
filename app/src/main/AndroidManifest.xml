@@ -57,6 +57,7 @@
         <activity android:name=".Stage.StageActivity" />
         <activity android:name=".Shop.ShopActivity" />
         <activity android:name=".Entreprise.NewEntrepriseActivity"></activity>
+        <activity android:name=".Main.NotifyActivity"></activity>
     </application>
 
 </manifest>
