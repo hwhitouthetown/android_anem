@@ -20,7 +20,7 @@ public class JsonParser {
 
     }
 
-    public ArrayList<HashMap<String,String>> readJsonStream(InputStream in) throws IOException {
+    public ArrayList<HashMap<String,Object>> readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return readMessagesArray(reader);
@@ -29,8 +29,8 @@ public class JsonParser {
         }
     }
 
-    public ArrayList<HashMap<String,String>> readMessagesArray(JsonReader reader) throws IOException {
-        ArrayList<HashMap<String,String>> vreturn = new ArrayList<>();
+    public ArrayList<HashMap<String,Object>> readMessagesArray(JsonReader reader) throws IOException {
+        ArrayList<HashMap<String,Object>> vreturn = new ArrayList<>();
 
         reader.beginArray();
         while (reader.hasNext()) {
@@ -40,12 +40,12 @@ public class JsonParser {
         return vreturn;
     }
 
-    public HashMap<String,String> readMessage(JsonReader reader) throws IOException {
+    public HashMap<String,Object> readMessage(JsonReader reader) throws IOException {
         long id = -1;
         String text = null;
         List<Double> geo = null;
         //ArrayList<HashMap<String,String>> vreturn = new ArrayList<>();
-        HashMap<String,String> val = new HashMap<>();
+        HashMap<String,Object> val = new HashMap<>();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();

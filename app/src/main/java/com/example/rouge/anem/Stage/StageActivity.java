@@ -38,7 +38,7 @@ public class StageActivity extends AppCompatActivity {
         };
         myModel = new Api(this.callback);
         listeStage = new ArrayList<Stage>();
-        listView = (ListView)findViewById(R.id.eListe);
+        listView = (ListView)findViewById(R.id.sListe);
         patientAdapter = new StageAdapter(getBaseContext(), listeStage);
         listView.setAdapter(patientAdapter);
         try {
@@ -50,7 +50,7 @@ public class StageActivity extends AppCompatActivity {
     }
 
     public void didReceivedData(){
-        ArrayList<HashMap<String,String>> result = this.callback.getResult();
+        ArrayList<HashMap<String,Object>> result = this.callback.getResult();
         listeStage = Stage.getStagesFromWS(result);
         patientAdapter.setListStage(listeStage);
         patientAdapter.notifyDataSetChanged();

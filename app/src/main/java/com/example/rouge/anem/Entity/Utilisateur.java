@@ -21,10 +21,10 @@ public class Utilisateur {
         this.prenom = prenom;
         this.email = email;
     }
-    public static ArrayList<Utilisateur> getUtilisateursFromWS(ArrayList<HashMap<String,String>> ws){
+    public static ArrayList<Utilisateur> getUtilisateursFromWS(ArrayList<HashMap<String,Object>> ws){
         ArrayList<Utilisateur> e = new ArrayList<Utilisateur>();
-        for (HashMap<String, String> item: ws) {
-            e.add(new Utilisateur(Integer.parseInt(item.get("id")), item.get("username"), item.get("username_canonical"), item.get("email")));
+        for (HashMap<String, Object> item: ws) {
+            e.add(new Utilisateur(Integer.parseInt((String)item.get("id")), (String)item.get("username"), (String)item.get("username_canonical"), (String)item.get("email")));
         }
         return e;
     }

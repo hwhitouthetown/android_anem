@@ -21,10 +21,10 @@ public class Entreprise {
         this.nom = nom;
     }
 
-    public static ArrayList<Entreprise> getEntreprisesFromWS(ArrayList<HashMap<String,String>> ws){
+    public static ArrayList<Entreprise> getEntreprisesFromWS(ArrayList<HashMap<String,Object>> ws){
         ArrayList<Entreprise> e = new ArrayList<Entreprise>();
-        for (HashMap<String, String> item: ws) {
-            e.add(new Entreprise(Integer.parseInt(item.get("id")), item.get("numtel"), item.get("adresse"), item.get("nom")));
+        for (HashMap<String, Object> item: ws) {
+            e.add(new Entreprise(Integer.parseInt((String)item.get("id")), (String)item.get("numtel"), (String)item.get("adresse"), (String)item.get("nom")));
         }
         return e;
     }

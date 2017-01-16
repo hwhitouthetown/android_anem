@@ -54,7 +54,7 @@ public class EntrepriseActivity extends AppCompatActivity {
     }
 
     public void didReceivedData(){
-        ArrayList<HashMap<String,String>> result = this.callback.getResult();
+        ArrayList<HashMap<String,Object>> result = this.callback.getResult();
         listeEntreprise = Entreprise.getEntreprisesFromWS(result);
         patientAdapter.setListEntreprise(listeEntreprise);
         patientAdapter.notifyDataSetChanged();

@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 public abstract class Callback<T> implements Callable<Void> {
-    ArrayList<HashMap<String,String>> result;
+    ArrayList<HashMap<String,Object>> result;
 
-    void setResult (ArrayList<HashMap<String,String>> result) {
+    void setResult (ArrayList<HashMap<String,Object>> result) {
         this.result = result;
     }
 
-    public ArrayList<HashMap<String,String>> getResult() {
+    public ArrayList<HashMap<String,Object>> getResult() {
         return result;
     }
 
