@@ -1,5 +1,12 @@
 package com.example.rouge.anem.Entity;
 
+import android.content.Context;
+
+import com.example.rouge.anem.Tools.Api;
+import com.example.rouge.anem.Tools.Util;
+
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +14,7 @@ import java.util.HashMap;
  * Created by rouge on 23/11/2016.
  */
 
-public class Entreprise {
+public class Entreprise implements Serializable {
 
     private int id;
     private String nom;
@@ -21,12 +28,27 @@ public class Entreprise {
         this.nom = nom;
     }
 
+    public Entreprise() {
+    }
+
     public static ArrayList<Entreprise> getEntreprisesFromWS(ArrayList<HashMap<String,String>> ws){
         ArrayList<Entreprise> e = new ArrayList<Entreprise>();
         for (HashMap<String, String> item: ws) {
             e.add(new Entreprise(Integer.parseInt(item.get("id")), item.get("numtel"), item.get("adresse"), item.get("nom")));
         }
         return e;
+    }
+
+    public void save(Api api, Context context) throws IOException {
+        HashMap<String,String> param = new HashMap<>();
+        param.put("id",Integer.toString(id));
+        param.put("nom",nom);
+        param.put("tel",numTel);
+        param.put("adresse",adresse);
+        api.setMethod("POST");
+        api.setParameters(param);
+        String[] url = {Util.getProperty("url.update_entreprise", context)};
+        api.execute(url);
     }
 
     public int getId() {

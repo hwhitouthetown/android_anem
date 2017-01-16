@@ -24,15 +24,15 @@ public class Api extends AsyncTask<String, String, Boolean> {
     ArrayList<HashMap<String,String>> result;
 
     public Api(Callback<Void> callback){
-        this.method = "GET";
+        this.setMethod("GET");
         this.callback = callback;
         this.jsonParser = new JsonParser();
     }
 
     public Api(Callback<Void> callback, HashMap<String,String> parameters, String method){
         this.callback = callback;
-        this.parameters = parameters;
-        this.method = method;
+        this.setParameters(parameters);
+        this.setMethod(method);
         this.jsonParser = new JsonParser();
     }
     @Override
@@ -52,12 +52,12 @@ public class Api extends AsyncTask<String, String, Boolean> {
 
         String body = "";
 
-        if (this.method.equals("POST")) {
+        if (this.getMethod().equals("POST")) {
 
-            for(Map.Entry<String, String> entry : this.parameters.entrySet()) {
+            for(Map.Entry<String, String> entry : this.getParameters().entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                bodyBuilder.append(key).append('=').append(value);
+                bodyBuilder.append(key).append('=').append(value).append('&');
             }
             body = bodyBuilder.toString();
 
@@ -70,9 +70,9 @@ public class Api extends AsyncTask<String, String, Boolean> {
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(false);
             conn.setUseCaches(false);
-            conn.setRequestMethod(this.method);
+            conn.setRequestMethod(this.getMethod());
             byte[] bytes = new byte[0];
-            if (this.method.equals("POST")) {
+            if (this.getMethod().equals("POST")) {
                 Log.v("Sending", "Posting '" + body + "' to " + url);
                 conn.setDoOutput(true);
                 bytes = body.getBytes();
@@ -123,4 +123,19 @@ public class Api extends AsyncTask<String, String, Boolean> {
 
     }
 
+    public HashMap<String, String> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(HashMap<String, String> parameters) {
+        this.parameters = parameters;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
 }

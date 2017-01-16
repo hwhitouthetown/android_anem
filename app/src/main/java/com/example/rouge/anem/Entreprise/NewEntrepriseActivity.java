@@ -17,7 +17,7 @@ import com.example.rouge.anem.Tools.Util;
 import java.io.IOException;
 
 public class NewEntrepriseActivity extends AppCompatActivity {
-    Entreprise entreprise;
+    Entreprise entreprise = new Entreprise();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +26,29 @@ public class NewEntrepriseActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.valider);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                newEntreprise();
+                save();
             }
         });
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            if (b.containsKey("entreprise")) {
+                this.entreprise = (Entreprise) b.getSerializable("entreprise");
+                fill();
+            }
+        }
+
     }
 
-    private void newEntreprise(){
-        String numTel = ((EditText) findViewById(R.id.tel)).getText().toString();
-        String nom = ((EditText) findViewById(R.id.nom)).getText().toString();
-        String adresse = ((EditText) findViewById(R.id.adresse)).getText().toString();
-        entreprise = new Entreprise(0,numTel,adresse,nom);
+    private void fill(){
+        ((EditText) findViewById(R.id.tel)).setText(entreprise.getNumTel());
+        ((EditText) findViewById(R.id.nom)).setText(entreprise.getNom());
+        ((EditText) findViewById(R.id.adresse)).setText(entreprise.getAdresse());
+    }
+
+    private void save(){
+        entreprise.setNumTel(((EditText) findViewById(R.id.tel)).getText().toString());
+        entreprise.setNom(((EditText) findViewById(R.id.nom)).getText().toString());
+        entreprise.setAdresse(((EditText) findViewById(R.id.adresse)).getText().toString());
         Callback callback= new Callback<Void>() {
             public Void call() {
                 finish();
@@ -43,9 +56,8 @@ public class NewEntrepriseActivity extends AppCompatActivity {
             }
         };
         try {
-            String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             Api api = new Api(callback);
-            api.execute(mesparams);
+            entreprise.save(api,getBaseContext());
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }

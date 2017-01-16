@@ -67,9 +67,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private SharedPreferences getGcmPreferences(Context context) {
-        // This sample app persists the registration ID in shared preferences, but
-        // how you store the regID in your app is up to you.
-
         return getSharedPreferences(MainActivity.class.getSimpleName(),Context.MODE_PRIVATE);
     }
     private boolean checkPlayServices() {
@@ -99,19 +96,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -122,13 +113,11 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
 
             startActivity(new Intent(MainActivity.this, ShopActivity.class));
-            //setContentView(R.layout.activity_shop);
 
         } else if (id == R.id.nav_gallery) {
             Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
@@ -165,9 +154,6 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 
-    /**
-     * Callback received when a permissions request has been completed.
-     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {

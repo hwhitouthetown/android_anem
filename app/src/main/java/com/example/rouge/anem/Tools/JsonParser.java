@@ -31,12 +31,17 @@ public class JsonParser {
 
     public ArrayList<HashMap<String,String>> readMessagesArray(JsonReader reader) throws IOException {
         ArrayList<HashMap<String,String>> vreturn = new ArrayList<>();
-
-        reader.beginArray();
-        while (reader.hasNext()) {
+        try{
+            reader.beginArray();
+            while (reader.hasNext()) {
+                vreturn.add(readMessage(reader));
+            }
+            reader.endArray();
+        }
+        catch(IllegalStateException i) {
             vreturn.add(readMessage(reader));
         }
-        reader.endArray();
+
         return vreturn;
     }
 
