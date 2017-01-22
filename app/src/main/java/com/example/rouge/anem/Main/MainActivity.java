@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.example.rouge.anem.Entreprise.EntrepriseActivity;
 import com.example.rouge.anem.Etudiant.EtudiantActivity;
+import com.example.rouge.anem.Message.MessageActivity;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Shop.ShopActivity;
 import com.example.rouge.anem.Stage.StageActivity;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, NotifyActivity.class);
+                Intent i = new Intent(MainActivity.this, MessageActivity.class);
                 startActivity(i);
             }
         });

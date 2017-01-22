@@ -2,9 +2,13 @@ package com.example.rouge.anem.Tools;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Properties;
 
 public class Util {
@@ -14,6 +18,25 @@ public class Util {
         InputStream inputStream = assetManager.open("config.properties");
         properties.load(inputStream);
         return properties.getProperty(key);
+    }
 
+    public static Date getDateFromString(String s){
+        String dateString = "03/26/2012 11:49:00 AM";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return convertedDate;
+    }
+
+    public static String getStringFromDate(Date d){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+
+        String reportDate = df.format(d);
+
+        return reportDate;
     }
 }

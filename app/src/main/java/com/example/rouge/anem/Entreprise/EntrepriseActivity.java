@@ -5,11 +5,14 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.rouge.anem.Entity.Entreprise;
@@ -41,7 +44,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                 return null;
             }
         };
-        myModel = new Api(this.callback);
+        myModel = new Api(this.callback, this);
         listeEntreprise = new ArrayList<Entreprise>();
         listView = (ListView)findViewById(R.id.lvListe);
         patientAdapter = new EntrepriseAdapter(getBaseContext(), listeEntreprise);
@@ -54,13 +57,18 @@ public class EntrepriseActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        EditText rechercher = (EditText) findViewById(R.id.rechercher);
+
+        TextWatcher fieldValidatorTextWatcher = rechercher();
+        rechercher.addTextChangedListener(fieldValidatorTextWatcher);
     }
 
     public void refresh(){
         try {
             String[] mesparams = {Util.getProperty("url.entreprise", getBaseContext())};
             myModel.execute(mesparams);
-            myModel = new Api(this.callback);
+            myModel = new Api(this.callback, this);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
@@ -72,10 +80,28 @@ public class EntrepriseActivity extends AppCompatActivity {
         refresh();
     }
 
+    public TextWatcher rechercher(){
+        return new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                patientAdapter.rechercher(s.toString());
+            }
+
+        };
+    }
+
     public void didReceivedData(){
         ArrayList<HashMap<String,Object>> result = this.callback.getResult();
         listeEntreprise = Entreprise.getEntreprisesFromWS(result);
-        patientAdapter.setListEntreprise(listeEntreprise);
+        patientAdapter.setInitialListEntreprise(listeEntreprise);
         patientAdapter.notifyDataSetChanged();
     }
 

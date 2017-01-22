@@ -36,14 +36,14 @@ public class StageActivity extends AppCompatActivity {
                 return null;
             }
         };
-        myModel = new Api(this.callback);
+        myModel = new Api(this.callback, this);
         listeStage = new ArrayList<Stage>();
         listView = (ListView)findViewById(R.id.sListe);
         patientAdapter = new StageAdapter(getBaseContext(), listeStage);
         listView.setAdapter(patientAdapter);
         try {
             String[] mesparams = {Util.getProperty("url.stage", getBaseContext())};
-            AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback).execute(mesparams);
+            AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, this).execute(mesparams);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }

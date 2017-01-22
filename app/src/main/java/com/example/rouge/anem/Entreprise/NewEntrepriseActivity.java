@@ -56,7 +56,7 @@ public class NewEntrepriseActivity extends AppCompatActivity {
             }
         };
         try {
-            Api api = new Api(callback);
+            Api api = new Api(callback, this);
             entreprise.save(api,getBaseContext());
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());

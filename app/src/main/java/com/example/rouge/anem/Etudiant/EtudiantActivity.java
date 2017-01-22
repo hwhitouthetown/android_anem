@@ -36,14 +36,14 @@ public class EtudiantActivity extends AppCompatActivity {
                 return null;
             }
         };
-        myModel = new Api(this.callback);
+        myModel = new Api(this.callback, this);
         listeEtudiant = new ArrayList<Utilisateur>();
         listView = (ListView)findViewById(R.id.eListe);
         patientAdapter = new EtudiantAdapter(getBaseContext(), listeEtudiant);
         listView.setAdapter(patientAdapter);
         try {
             String[] mesparams = {Util.getProperty("url.etudiant", getBaseContext())};
-            AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback).execute(mesparams);
+            AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, this).execute(mesparams);
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }

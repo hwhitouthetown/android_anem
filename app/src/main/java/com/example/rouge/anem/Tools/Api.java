@@ -1,5 +1,7 @@
 package com.example.rouge.anem.Tools;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -22,23 +24,27 @@ public class Api extends AsyncTask<String, String, Boolean> {
     private HashMap<String,String> parameters;
     private String method;
     ArrayList<HashMap<String,Object>> result;
+    ProgressDialog progress;
 
-    public Api(Callback<Void> callback){
+    public Api(Callback<Void> callback, Context context){
         this.setMethod("GET");
         this.callback = callback;
         this.jsonParser = new JsonParser();
+        this.progress = new ProgressDialog(context);
     }
 
-    public Api(Callback<Void> callback, HashMap<String,String> parameters, String method){
+    public Api(Callback<Void> callback, HashMap<String,String> parameters, String method, Context context){
         this.callback = callback;
         this.setParameters(parameters);
         this.setMethod(method);
         this.jsonParser = new JsonParser();
+        this.progress = new ProgressDialog(context);
     }
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
+        progress.setMessage("Chargement...");
+        progress.show();
     }
     @Override
     protected Boolean doInBackground(String... urls) {
@@ -112,6 +118,7 @@ public class Api extends AsyncTask<String, String, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean result) {
+        progress.hide();
         if (result){
             this.callback.setResult(this.result);
             this.callback.call();
