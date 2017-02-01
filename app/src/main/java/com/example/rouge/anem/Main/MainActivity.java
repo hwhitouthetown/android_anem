@@ -1,5 +1,7 @@
 package com.example.rouge.anem.Main;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -131,8 +133,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_who) {
 
         } else if (id == R.id.stage) {
-            Intent i = new Intent(MainActivity.this, StageActivity.class);
-            startActivity(i);
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.flFragments, new StageActivity())
+                    .commit();
         }
 
 

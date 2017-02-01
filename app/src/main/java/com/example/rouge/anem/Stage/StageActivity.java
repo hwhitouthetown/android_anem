@@ -1,8 +1,8 @@
 package com.example.rouge.anem.Stage;
 
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;

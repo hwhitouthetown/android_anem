@@ -1,6 +1,6 @@
 package com.example.rouge.anem.Entreprise;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,7 +53,7 @@ public class NewEntrepriseActivity extends Fragment {
         entreprise.setAdresse(((EditText) getView().findViewById(R.id.adresse)).getText().toString());
         Callback callback= new Callback<Void>() {
             public Void call() {
-                //finish();
+                getActivity().finish();
                 return null;
             }
         };

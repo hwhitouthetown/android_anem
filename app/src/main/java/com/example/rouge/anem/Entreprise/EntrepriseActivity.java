@@ -115,7 +115,7 @@ public class EntrepriseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_plus) {
-            startActivity(new Intent(this, NewEntrepriseActivity.class));
+            startActivity(new Intent(this, NewEntrepriseContainer.class));
             return true;
         }
 

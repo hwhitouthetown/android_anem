@@ -63,8 +63,8 @@
         <activity
             android:name=".Entreprise.TabEntrepriseActivity"
             android:label="@string/title_activity_tab_entreprise"
-            android:parentActivityName=".Main.MainActivity">
-        </activity>
+            android:parentActivityName=".Main.MainActivity"></activity>
+        <activity android:name=".Entreprise.NewEntrepriseContainer"></activity>
     </application>
 
 </manifest>
