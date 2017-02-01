@@ -3,7 +3,10 @@ package com.example.rouge.anem.Etudiant;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.rouge.anem.Entity.Utilisateur;
@@ -47,6 +50,11 @@ public class EtudiantActivity extends AppCompatActivity {
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
+
+        EditText rechercher = (EditText) findViewById(R.id.rechercherEtu);
+
+        TextWatcher fieldValidatorTextWatcher = rechercher();
+        rechercher.addTextChangedListener(fieldValidatorTextWatcher);
     }
 
     public void didReceivedData(){
@@ -56,5 +64,21 @@ public class EtudiantActivity extends AppCompatActivity {
         patientAdapter.notifyDataSetChanged();
         result = result;
     }
+    public TextWatcher rechercher(){
+        return new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
 
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                patientAdapter.rechercher(s.toString());
+            }
+
+        };
+    }
 }
