@@ -24,7 +24,10 @@ public class Utilisateur {
     public static ArrayList<Utilisateur> getUtilisateursFromWS(ArrayList<HashMap<String,Object>> ws){
         ArrayList<Utilisateur> e = new ArrayList<Utilisateur>();
         for (HashMap<String, Object> item: ws) {
-            e.add(new Utilisateur(Integer.parseInt((String)item.get("id")), (String)item.get("username"), (String)item.get("username_canonical"), (String)item.get("email")));
+            e.add(new Utilisateur(Integer.parseInt(
+                    (String)item.get("id")),
+                    (String)item.get("username"), (String)item.get("username_canonical"),
+                    (String)item.get("email")));
         }
         return e;
     }

@@ -14,13 +14,12 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
+        android:name=".override.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo_anem_png"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".override.MyApp">
-
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/app_name"
@@ -58,9 +57,14 @@
         <activity android:name=".Etudiant.EtudiantActivity" />
         <activity android:name=".Stage.StageActivity" />
         <activity android:name=".Shop.ShopActivity" />
-        <activity android:name=".Entreprise.NewEntrepriseActivity"></activity>
-        <activity android:name=".Main.NotifyActivity"></activity>
-        <activity android:name=".Message.MessageActivity"></activity>
+        <activity android:name=".Entreprise.NewEntrepriseActivity" />
+        <activity android:name=".Main.NotifyActivity" />
+        <activity android:name=".Message.MessageActivity" />
+        <activity
+            android:name=".Entreprise.TabEntrepriseActivity"
+            android:label="@string/title_activity_tab_entreprise"
+            android:parentActivityName=".Main.MainActivity">
+        </activity>
     </application>
 
 </manifest>

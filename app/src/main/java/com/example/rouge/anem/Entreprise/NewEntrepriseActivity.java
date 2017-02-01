@@ -1,9 +1,12 @@
 package com.example.rouge.anem.Entreprise;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,50 +19,51 @@ import com.example.rouge.anem.Tools.Util;
 
 import java.io.IOException;
 
-public class NewEntrepriseActivity extends AppCompatActivity {
+public class NewEntrepriseActivity extends Fragment {
     Entreprise entreprise = new Entreprise();
+    public NewEntrepriseActivity(){}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater,container,savedInstanceState);
+        return inflater.inflate(R.layout.activity_new_entreprise, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_entreprise);
-        Button button = (Button) findViewById(R.id.valider);
+    public void onStart() {
+        super.onStart();
+        Button button = (Button) getView().findViewById(R.id.valider);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 save();
             }
         });
-        Bundle b = getIntent().getExtras();
-        if (b != null) {
-            if (b.containsKey("entreprise")) {
-                this.entreprise = (Entreprise) b.getSerializable("entreprise");
-                fill();
-            }
-        }
-
+        fill();
     }
 
     private void fill(){
-        ((EditText) findViewById(R.id.tel)).setText(entreprise.getNumTel());
-        ((EditText) findViewById(R.id.nom)).setText(entreprise.getNom());
-        ((EditText) findViewById(R.id.adresse)).setText(entreprise.getAdresse());
+        ((EditText) getView().findViewById(R.id.tel)).setText(entreprise.getNumTel());
+        ((EditText) getView().findViewById(R.id.nom)).setText(entreprise.getNom());
+        ((EditText) getView().findViewById(R.id.adresse)).setText(entreprise.getAdresse());
     }
 
     private void save(){
-        entreprise.setNumTel(((EditText) findViewById(R.id.tel)).getText().toString());
-        entreprise.setNom(((EditText) findViewById(R.id.nom)).getText().toString());
-        entreprise.setAdresse(((EditText) findViewById(R.id.adresse)).getText().toString());
+        entreprise.setNumTel(((EditText) getView().findViewById(R.id.tel)).getText().toString());
+        entreprise.setNom(((EditText) getView().findViewById(R.id.nom)).getText().toString());
+        entreprise.setAdresse(((EditText) getView().findViewById(R.id.adresse)).getText().toString());
         Callback callback= new Callback<Void>() {
             public Void call() {
-                finish();
+                //finish();
                 return null;
             }
         };
         try {
-            Api api = new Api(callback, this);
-            entreprise.save(api,getBaseContext());
+            Api api = new Api(callback, getContext());
+            entreprise.save(api,getContext());
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
     }
+
+
 }

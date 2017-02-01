@@ -14,14 +14,16 @@ public class Stage {
     private String etat;
     private Entreprise entreprise;
     private Utilisateur etudiant;
+    private ArrayList<Competence> competences;
 
-    public Stage(int id, String intitule, String description, String etat, Entreprise entreprise, Utilisateur etudiant) {
+    public Stage(int id, String intitule, String description, String etat, Entreprise entreprise, Utilisateur etudiant, ArrayList<Competence> competences) {
         this.id = id;
         this.intitule = intitule;
         this.description = description;
         this.etat = etat;
         this.entreprise = entreprise;
         this.etudiant = etudiant;
+        this.competences = competences;
     }
 
     public static ArrayList<Stage> getStagesFromWS(ArrayList<HashMap<String,Object>> ws){
@@ -31,12 +33,14 @@ public class Stage {
             ent.add((HashMap<String,Object>)item.get("identreprise"));
             ArrayList<HashMap<String,Object>> u = new ArrayList<>();
             u.add((HashMap<String,Object>)item.get("idetudiant"));
+            ArrayList<HashMap<String,Object>> c = (ArrayList<HashMap<String,Object>>) item.get("competences");
             e.add(new Stage(Integer.parseInt((String)item.get("id")),
                     (String)item.get("intitule"),
                     (String)item.get("description"),
                     (String)item.get("etat"),
                     Entreprise.getEntreprisesFromWS(ent).get(0),
-                    Utilisateur.getUtilisateursFromWS(u).get(0)));
+                    Utilisateur.getUtilisateursFromWS(u).get(0),
+                    Competence.getCompetencesFromWS(c)));
         }
         return e;
     }
@@ -99,5 +103,24 @@ public class Stage {
                 ", entreprise=" + entreprise +
                 ", etudiant=" + etudiant +
                 '}';
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(ArrayList<Competence> competences) {
+        this.competences = competences;
+    }
+
+    public String getCompetenceToString(){
+        String vretour = "";
+        for (Competence e: this.competences){
+            vretour += e.getTitre();
+            if (e != this.competences.get(competences.size() - 1)){
+                vretour += "; ";
+            }
+        }
+        return vretour;
     }
 }

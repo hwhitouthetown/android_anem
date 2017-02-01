@@ -52,7 +52,7 @@ public class EntrepriseActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myIntent = new Intent(EntrepriseActivity.this, NewEntrepriseActivity.class);
+                Intent myIntent = new Intent(EntrepriseActivity.this, TabEntrepriseActivity.class);
                 myIntent.putExtra("entreprise", (Serializable) listeEntreprise.get(position));
                 startActivity(myIntent);
             }
