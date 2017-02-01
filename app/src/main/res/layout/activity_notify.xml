@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
 android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,29 +14,45 @@ android:divider="@color/cast_libraries_material_featurehighlight_outer_highlight
 android:dividerPadding="10dp"
 android:orientation="vertical"
 android:focusable="true"
-android:focusableInTouchMode="true">
+android:focusableInTouchMode="true"
+    android:layout_above="@+id/relativeLayout">
 
 <ListView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/lvListe"
     style="@style/Widget.AppCompat.Light.ListView.DropDown"
     android:divider="#999"
-    android:dividerHeight="1dp" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/message"
-        android:hint="Message à envoyer"
-        android:textSize="14sp" />
+    android:dividerHeight="1dp"
+    android:transcriptMode="alwaysScroll"
+    android:stackFromBottom="true"/>
 
-    <Button
-        android:text="Envoyer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/envoyer"
-        android:layout_weight="0.01" />
 
 </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:id="@+id/relativeLayout">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/message"
+            android:hint="@string/message_envoyer"
+            android:textSize="14sp"
+            android:gravity="top" />
+
+        <Button
+            android:text="@string/envoyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/envoyer"
+            android:gravity="right|center_vertical|center_horizontal"
+            android:layout_alignParentRight="true"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+    </RelativeLayout>
+</RelativeLayout>

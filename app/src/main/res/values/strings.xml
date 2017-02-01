@@ -40,6 +40,8 @@
     <string name="SpinnerCoursLegend">Choix cours</string>
     <string name="SpinnerGenre">Choix genre</string>
     <string name="SpinnerTaille">Choix taille</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="message_envoyer">Message à envoyer</string>
 
     <string-array name="Cours">
         <item>XML</item>

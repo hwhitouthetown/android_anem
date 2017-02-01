@@ -48,16 +48,18 @@ public class MessageAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = layoutInflater.inflate(R.layout.liste_entreprise, null);
+            convertView = layoutInflater.inflate(R.layout.liste_message, null);
             holder.textViewNom = (TextView) convertView.findViewById(R.id.vueNom);
             holder.textViewAdresse = (TextView) convertView.findViewById(R.id.vueAdresse);
+            holder.textViewDate = (TextView) convertView.findViewById(R.id.vueDate);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textViewNom.setText(getListMessage().get(position).getUtilisateur().getPrenom()+" ("+ Util.getStringFromDate(getListMessage().get(position).getDate())+") :");
+        holder.textViewNom.setText(getListMessage().get(position).getUtilisateur().getPrenom());
         holder.textViewAdresse.setText(getListMessage().get(position).getMessage());
+        holder.textViewDate.setText(Util.getStringFromDate(getListMessage().get(position).getDate()));
         return convertView;
     }
 
@@ -83,5 +85,6 @@ public class MessageAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView textViewNom;
         TextView textViewAdresse;
+        TextView textViewDate;
     }
 }
