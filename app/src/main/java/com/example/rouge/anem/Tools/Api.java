@@ -50,26 +50,25 @@ public class Api extends AsyncTask<String, String, Boolean> {
     protected Boolean doInBackground(String... urls) {
         URL url;
         StringBuilder bodyBuilder = new StringBuilder();
+        try {
+            url = new URL(urls[0]);
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException("invalid url: " + urls[0]);
+        }
+
         String body = "";
-        if (this.getParameters() != null) {
-            for (Map.Entry<String, String> entry : this.getParameters().entrySet()) {
+
+        if (this.getMethod().equals("POST")) {
+
+            for(Map.Entry<String, String> entry : this.getParameters().entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 bodyBuilder.append(key).append('=').append(value).append('&');
             }
-
             body = bodyBuilder.toString();
-        }
-        try {
-            if (this.getMethod().equals("GET")) {
-                url = new URL(urls[0]+"?"+body);
-            }else{
-                url = new URL(urls[0]);
-            }
 
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("invalid url: " + urls[0]);
         }
+
 
         HttpURLConnection conn = null;
         try {
@@ -94,9 +93,8 @@ public class Api extends AsyncTask<String, String, Boolean> {
 
             // handle the response
             int HttpResult = conn.getResponseCode();
-            this.callback.code = HttpResult;
             if (HttpResult == 200) {
-                //Log.e("Reponse serveur",Util.convertStreamToString(conn.getInputStream()));
+                Log.v("Reponse serveur",conn.getInputStream().toString());
                 this.result = jsonParser.readJsonStream(conn.getInputStream());
                 return true;
             }else {
@@ -121,7 +119,7 @@ public class Api extends AsyncTask<String, String, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         progress.hide();
-        if (this.callback != null){
+        if (result){
             this.callback.setResult(this.result);
             this.callback.call();
         }

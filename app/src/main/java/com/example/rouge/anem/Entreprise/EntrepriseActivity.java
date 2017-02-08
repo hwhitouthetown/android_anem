@@ -1,5 +1,6 @@
 package com.example.rouge.anem.Entreprise;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -34,10 +35,17 @@ public class EntrepriseActivity extends AppCompatActivity {
     private ListView listView;
     private Callback callback;
     private EntrepriseAdapter patientAdapter;
+    private Boolean isSelecting = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entreprise);
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            if (b.containsKey("isSelecting")) {
+                this.isSelecting = b.getBoolean("isSelecting");
+            }
+        }
         this.callback = new Callback<Void>() {
             public Void call() {
                 didReceivedData();
@@ -52,9 +60,14 @@ public class EntrepriseActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myIntent = new Intent(EntrepriseActivity.this, TabEntrepriseActivity.class);
-                myIntent.putExtra("entreprise", (Serializable) listeEntreprise.get(position));
-                startActivity(myIntent);
+                if (!isSelecting){
+                    Intent myIntent = new Intent(EntrepriseActivity.this, TabEntrepriseActivity.class);
+                    myIntent.putExtra("entreprise", listeEntreprise.get(position));
+                    startActivity(myIntent);
+                }else{
+                    setResult(Activity.RESULT_OK, new Intent().putExtra("entreprise", listeEntreprise.get(position)));
+                    finish();
+                }
             }
         });
 
@@ -62,6 +75,8 @@ public class EntrepriseActivity extends AppCompatActivity {
 
         TextWatcher fieldValidatorTextWatcher = rechercher();
         rechercher.addTextChangedListener(fieldValidatorTextWatcher);
+
+
     }
 
     public void refresh(){

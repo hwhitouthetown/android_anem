@@ -1,5 +1,12 @@
 package com.example.rouge.anem.Entity;
 
+import android.content.Context;
+
+import com.example.rouge.anem.Tools.Api;
+import com.example.rouge.anem.Tools.Util;
+
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +14,7 @@ import java.util.HashMap;
  * Created by rouge on 23/11/2016.
  */
 
-public class Stage {
+public class Stage implements Serializable{
     private int id;
     private String intitule;
     private String description;
@@ -15,6 +22,8 @@ public class Stage {
     private Entreprise entreprise;
     private Utilisateur etudiant;
     private ArrayList<Competence> competences;
+
+    public Stage(){}
 
     public Stage(int id, String intitule, String description, String etat, Entreprise entreprise, Utilisateur etudiant, ArrayList<Competence> competences) {
         this.id = id;
@@ -43,6 +52,34 @@ public class Stage {
                     Competence.getCompetencesFromWS(c)));
         }
         return e;
+    }
+
+    public HashMap<String, String> getStageReadyForWs(){
+        HashMap<String, String> vretour = new HashMap<>();
+        vretour.put("id", String.valueOf(id));
+        vretour.put("intitule", intitule);
+        vretour.put("description", description);
+        vretour.put("etat", etat);
+        vretour.put("entreprise", String.valueOf(entreprise.getId()));
+        vretour.put("user", String.valueOf(etudiant.getId()));
+        vretour.put("comp", getCompetenceToStringWs());
+        return vretour;
+    }
+
+    public void save(Api api, Context context) throws IOException {
+        HashMap<String,String> param = getStageReadyForWs();
+        api.setMethod("POST");
+        api.setParameters(param);
+        String[] url = {Util.getProperty("url.update_entreprise", context)};
+        api.execute(url);
+    }
+
+    public String getCompetenceToStringWs(){
+        String vretour = "";
+        for (Competence e: this.competences){
+            vretour += "&competences[]="+e.getTitre();
+        }
+        return vretour;
     }
 
     public int getId() {

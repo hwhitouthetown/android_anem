@@ -1,7 +1,6 @@
 package com.example.rouge.anem.Entreprise;
 
 import android.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,18 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.rouge.anem.Entity.Entreprise;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
-import com.example.rouge.anem.Tools.Util;
 
 import java.io.IOException;
 
 public class NewEntrepriseActivity extends Fragment {
-    Entreprise entreprise = new Entreprise();
+    private Entreprise entreprise = new Entreprise();
     public NewEntrepriseActivity(){}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,15 +39,15 @@ public class NewEntrepriseActivity extends Fragment {
     }
 
     private void fill(){
-        ((EditText) getView().findViewById(R.id.tel)).setText(entreprise.getNumTel());
-        ((EditText) getView().findViewById(R.id.nom)).setText(entreprise.getNom());
-        ((EditText) getView().findViewById(R.id.adresse)).setText(entreprise.getAdresse());
+        ((EditText) getView().findViewById(R.id.tel)).setText(getEntreprise().getNumTel());
+        ((EditText) getView().findViewById(R.id.nom)).setText(getEntreprise().getNom());
+        ((EditText) getView().findViewById(R.id.adresse)).setText(getEntreprise().getAdresse());
     }
 
     private void save(){
-        entreprise.setNumTel(((EditText) getView().findViewById(R.id.tel)).getText().toString());
-        entreprise.setNom(((EditText) getView().findViewById(R.id.nom)).getText().toString());
-        entreprise.setAdresse(((EditText) getView().findViewById(R.id.adresse)).getText().toString());
+        getEntreprise().setNumTel(((EditText) getView().findViewById(R.id.tel)).getText().toString());
+        getEntreprise().setNom(((EditText) getView().findViewById(R.id.nom)).getText().toString());
+        getEntreprise().setAdresse(((EditText) getView().findViewById(R.id.adresse)).getText().toString());
         Callback callback= new Callback<Void>() {
             public Void call() {
                 getActivity().finish();
@@ -58,12 +55,19 @@ public class NewEntrepriseActivity extends Fragment {
             }
         };
         try {
-            Api api = new Api(callback, getContext());
-            entreprise.save(api,getContext());
+            Api api = new Api(callback, getView().getContext());
+            getEntreprise().save(api,getView().getContext());
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
     }
 
 
+    public Entreprise getEntreprise() {
+        return entreprise;
+    }
+
+    public void setEntreprise(Entreprise entreprise) {
+        this.entreprise = entreprise;
+    }
 }

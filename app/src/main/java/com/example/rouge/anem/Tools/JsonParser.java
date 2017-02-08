@@ -3,7 +3,6 @@ package com.example.rouge.anem.Tools;
 import android.os.Message;
 import android.util.JsonReader;
 import android.util.JsonToken;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,11 +24,7 @@ public class JsonParser {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return readMessagesArray(reader);
-        }catch(IllegalStateException i) {
-            Log.e("Erreur Parser JSON",i.toString());
-            return new ArrayList<>();
-        }
-        finally {
+        } finally {
             reader.close();
         }
     }

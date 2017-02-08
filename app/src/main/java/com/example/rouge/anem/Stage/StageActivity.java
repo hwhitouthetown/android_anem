@@ -1,13 +1,18 @@
 package com.example.rouge.anem.Stage;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +44,7 @@ public class StageActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.activity_stage, container, false);
     }
     @Override
@@ -50,23 +56,23 @@ public class StageActivity extends Fragment {
                 return null;
             }
         };
-        myModel = new Api(this.callback, getContext());
+        myModel = new Api(this.callback, getView().getContext());
         listeStage = new ArrayList<Stage>();
         listView = (ListView)getView().findViewById(R.id.sListe);
-        patientAdapter = new StageAdapter(getContext(), listeStage);
+        patientAdapter = new StageAdapter(getView().getContext(), listeStage);
         listView.setAdapter(patientAdapter);
         try {
             if (this.entreprise == null && this.etudiant == null){
-                String[] mesparams = {Util.getProperty("url.stage", getContext())};
-                AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                String[] mesparams = {Util.getProperty("url.stage", getView().getContext())};
+                AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getView().getContext()).execute(mesparams);
             }else{
                 if (this.etudiant == null){
-                    String[] mesparams = {Util.getProperty("url.stagebyentreprise", getContext())+entreprise.getId()};
-                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                    String[] mesparams = {Util.getProperty("url.stagebyentreprise", getView().getContext())+entreprise.getId()};
+                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getView().getContext()).execute(mesparams);
                 }
                 else{
-                    String[] mesparams = {Util.getProperty("url.stagebyetudiant", getContext())+etudiant.getId()};
-                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                    String[] mesparams = {Util.getProperty("url.stagebyetudiant", getView().getContext())+etudiant.getId()};
+                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getView().getContext()).execute(mesparams);
                 }
 
             }
@@ -75,6 +81,14 @@ public class StageActivity extends Fragment {
         }catch(IOException i ){
             Log.d("Erreur de propriété", i.toString());
         }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myIntent = new Intent(getActivity(), TabStageActivity.class);
+                myIntent.putExtra("stage", listeStage.get(position));
+                startActivity(myIntent);
+            }
+        });
     }
 
     public void didReceivedData(){
@@ -91,6 +105,24 @@ public class StageActivity extends Fragment {
         }
         patientAdapter.setListStage(listeStage);
         patientAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.plus, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_plus:
+                Intent myIntent = new Intent(getActivity(), NewStageActivity.class);
+                startActivity(myIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public Entreprise getEntreprise() {

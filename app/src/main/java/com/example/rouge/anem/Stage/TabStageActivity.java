@@ -1,5 +1,4 @@
-package com.example.rouge.anem.Entreprise;
-
+package com.example.rouge.anem.Stage;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.design.widget.TabLayout;
@@ -16,17 +15,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.rouge.anem.Entity.Entreprise;
+import com.example.rouge.anem.Entity.Stage;
+import com.example.rouge.anem.Entreprise.NewEntrepriseActivity;
 import com.example.rouge.anem.R;
-import com.example.rouge.anem.Stage.StageActivity;
 
-public class TabEntrepriseActivity extends AppCompatActivity {
+public class TabStageActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
 
     private ViewPager mViewPager;
 
-    private Entreprise entreprise;
+    private Stage stage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,8 @@ public class TabEntrepriseActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            if (b.containsKey("entreprise")) {
-                this.entreprise = (Entreprise) b.getSerializable("entreprise");
+            if (b.containsKey("stage")) {
+                this.stage = (Stage) b.getSerializable("stage");
             }
         }
 
@@ -57,8 +57,8 @@ public class TabEntrepriseActivity extends AppCompatActivity {
         }
 
 
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static com.example.rouge.anem.Entreprise.TabEntrepriseActivity.PlaceholderFragment newInstance(int sectionNumber) {
+            com.example.rouge.anem.Entreprise.TabEntrepriseActivity.PlaceholderFragment fragment = new com.example.rouge.anem.Entreprise.TabEntrepriseActivity.PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -80,19 +80,23 @@ public class TabEntrepriseActivity extends AppCompatActivity {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-        public TabEntrepriseActivity context;
+        public TabStageActivity context;
 
         @Override
         public Fragment getItem(int position) {
             Fragment f = new Fragment();
             switch (position) {
                 case 0:
-                    NewEntrepriseActivity n = new NewEntrepriseActivity();
-                    n.setEntreprise(entreprise);
+                    DetailStageActivity n = new DetailStageActivity();
+                    n.setStage(stage);
                     return n;
                 case 1:
+                    NewEntrepriseActivity d = new NewEntrepriseActivity();
+                    d.setEntreprise(stage.getEntreprise());
+                    return d;
+                case 2:
                     StageActivity s = new StageActivity();
-                    s.setEntreprise(entreprise);
+                    s.setEntreprise(stage.getEntreprise());
                     return s;
             }
             return f;
@@ -100,18 +104,18 @@ public class TabEntrepriseActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Informations générales";
+                    return "Informations sur le stage";
                 case 1:
-                    return "Les stages";
+                    return "Informations sur l'entreprise";
                 case 2:
-                    return "SECTION 3";
+                    return "Les autres stages";
             }
             return null;
         }

@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rouge.anem.Stage.DetailStageActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:id="@+id/intitule"
+            android:textSize="30sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:text="Etat du stage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelEtat"
+            android:textSize="18sp" />
+        <TextView
+            android:text="Etat du stage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textEtat"
+            android:textSize="14sp" />
+        <TextView
+            android:text="Description de la mission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelDesc"
+            android:textSize="18sp" />
+        <TextView
+            android:text="Description de la mission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textDesc"
+            android:textSize="14sp" />
+        <TextView
+            android:text="Liste des compétences mises en oeuvre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelComp"
+            android:textSize="18sp" />
+        <TextView
+            android:text="Comp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textComp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</FrameLayout>

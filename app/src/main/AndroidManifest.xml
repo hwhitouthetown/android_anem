@@ -26,6 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -61,15 +62,19 @@
         <activity android:name=".Message.MessageActivity" />
         <activity
             android:name=".Entreprise.TabEntrepriseActivity"
+            android:label="@string/title_activity_tab_entreprise" />
+        <activity android:name=".Entreprise.NewEntrepriseContainer" />
+        <activity android:name=".Stage.TabStageActivity"
             android:label="@string/title_activity_tab_entreprise"
-            android:parentActivityName=".Main.MainActivity" />
+            android:parentActivityName=".Main.MainActivity">
+        </activity>
         <activity
             android:name=".Etudiant.TabEtudiantActivity"
             android:label="@string/title_activity_tab_etudiant"
             android:parentActivityName=".Etudiant.EtudiantActivity" />
         <activity android:name=".Entreprise.NewEntrepriseContainer" />
         <activity android:name=".Etudiant.NewEtudiantContainer" />
-        <activity android:name=".Main.RegisterActivity"></activity>
+        <activity android:name=".Stage.NewStageActivity"></activity>
     </application>
 
 </manifest>

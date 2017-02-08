@@ -3,7 +3,6 @@ package com.example.rouge.anem.Main;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -20,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,18 +29,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.rouge.anem.Entity.AuthenticatedUser;
-import com.example.rouge.anem.Entity.Entreprise;
 import com.example.rouge.anem.R;
-import com.example.rouge.anem.Tools.Api;
-import com.example.rouge.anem.Tools.Callback;
-import com.example.rouge.anem.Tools.Util;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -56,27 +46,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-
+    /**
+     * A dummy authentication store containing known user names and passwords.
+     * TODO: remove after connecting to a real authentication system.
+     */
+    private static final String[] DUMMY_CREDENTIALS = new String[]{
+            "foo@example.com:hello", "bar@example.com:world"
+    };
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     */
+    private UserLoginTask mAuthTask = null;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Callback callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        this.callback = new Callback<Void>() {
-            public Void call() {
-                didReceivedData();
-                return null;
-            }
-        };
-
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -155,6 +146,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+        if (mAuthTask != null) {
+            return;
+        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -179,30 +173,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
         }
 
         if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
             focusView.requestFocus();
         } else {
-            Api api = new Api(this.callback,this.getBaseContext());
-
-            try {
-
-                String clientId = Util.getProperty("client.id",  this.getBaseContext());
-                String clientSecret =  Util.getProperty("client.secret",  this.getBaseContext());
-                AuthenticatedUser.getInstance().updateClient(clientId,clientSecret);
-
-                AuthenticatedUser.getInstance().getConnect(api,this.getBaseContext(),email,password);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
         }
     }
 
-
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return email.contains("@");
+    }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 0;
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 
     /**
@@ -292,26 +289,64 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         };
 
         int ADDRESS = 0;
+        int IS_PRIMARY = 1;
     }
 
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-    public void didReceivedData(){
-        ArrayList<HashMap<String,Object>> result = this.callback.getResult();
-        View focusView = null;
+        private final String mEmail;
+        private final String mPassword;
 
-        if(result !=null && this.callback.code != 404) {
-            AuthenticatedUser.getInstance().updateClientFromWs(result);
-            startActivity(new Intent(this,MainActivity.class));
-        } else if(this.callback.code == 0) {
-            mEmailView.setError(getString(R.string.server_contact));
-            focusView = mEmailView;
-            focusView.requestFocus();
-        } else {
-            mEmailView.setError(getString(R.string.invalid_credential));
-            focusView = mEmailView;
-            focusView.requestFocus();
+        UserLoginTask(String email, String password) {
+            mEmail = email;
+            mPassword = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            try {
+                // Simulate network access.
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                return false;
+            }
+
+            for (String credential : DUMMY_CREDENTIALS) {
+                String[] pieces = credential.split(":");
+                if (pieces[0].equals(mEmail)) {
+                    // Account exists, return true if the password matches.
+                    return pieces[1].equals(mPassword);
+                }
+            }
+
+            // TODO: register the new account here.
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            showProgress(false);
+
+            if (success) {
+                finish();
+            } else {
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.requestFocus();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+            showProgress(false);
         }
     }
-
 }
 

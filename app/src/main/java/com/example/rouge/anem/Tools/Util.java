@@ -1,9 +1,12 @@
 package com.example.rouge.anem.Tools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +43,9 @@ public class Util {
         return reportDate;
     }
 
-    static String convertStreamToString(java.io.InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
+    public static void hideSoftKeyboard (Activity activity, View view)
+    {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 }
