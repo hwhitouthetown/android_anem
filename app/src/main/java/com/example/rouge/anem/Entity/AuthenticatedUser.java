@@ -1,5 +1,13 @@
 package com.example.rouge.anem.Entity;
 
+import android.content.Context;
+
+import com.example.rouge.anem.Tools.Api;
+import com.example.rouge.anem.Tools.Util;
+
+import java.io.IOException;
+import java.util.HashMap;
+
 /**
  * Created by rouge on 16/01/2017.
  */

@@ -26,7 +26,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -63,14 +62,14 @@
         <activity
             android:name=".Entreprise.TabEntrepriseActivity"
             android:label="@string/title_activity_tab_entreprise"
-            android:parentActivityName=".Main.MainActivity"></activity>
+            android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Etudiant.TabEtudiantActivity"
             android:label="@string/title_activity_tab_etudiant"
-            android:parentActivityName=".Etudiant.EtudiantActivity"></activity>
-        <activity android:name=".Entreprise.NewEntrepriseContainer"></activity>
-        <activity android:name=".Etudiant.NewEtudiantContainer"></activity>
-
+            android:parentActivityName=".Etudiant.EtudiantActivity" />
+        <activity android:name=".Entreprise.NewEntrepriseContainer" />
+        <activity android:name=".Etudiant.NewEtudiantContainer" />
+        <activity android:name=".Main.RegisterActivity"></activity>
     </application>
 
 </manifest>

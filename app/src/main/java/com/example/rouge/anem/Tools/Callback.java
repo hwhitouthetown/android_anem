@@ -11,6 +11,8 @@ import java.util.concurrent.Callable;
 public abstract class Callback<T> implements Callable<Void> {
     ArrayList<HashMap<String,Object>> result;
 
+    public int code;
+
     void setResult (ArrayList<HashMap<String,Object>> result) {
         this.result = result;
     }
