@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.rouge.anem.Entity.Entreprise;
 import com.example.rouge.anem.Entity.Stage;
+import com.example.rouge.anem.Entity.Utilisateur;
 import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
@@ -33,6 +34,7 @@ public class StageActivity extends Fragment {
     private Callback callback;
     private StageAdapter patientAdapter;
     private Entreprise entreprise;
+    private Utilisateur etudiant;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,5 +92,13 @@ public class StageActivity extends Fragment {
 
     public void setEntreprise(Entreprise entreprise) {
         this.entreprise = entreprise;
+    }
+
+    public Utilisateur getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Utilisateur etudiant) {
+        this.etudiant = etudiant;
     }
 }

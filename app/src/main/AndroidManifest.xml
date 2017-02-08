@@ -64,7 +64,13 @@
             android:name=".Entreprise.TabEntrepriseActivity"
             android:label="@string/title_activity_tab_entreprise"
             android:parentActivityName=".Main.MainActivity"></activity>
+        <activity
+            android:name=".Etudiant.TabEtudiantActivity"
+            android:label="@string/title_activity_tab_etudiant"
+            android:parentActivityName=".Etudiant.EtudiantActivity"></activity>
         <activity android:name=".Entreprise.NewEntrepriseContainer"></activity>
+        <activity android:name=".Etudiant.NewEtudiantContainer"></activity>
+
     </application>
 
 </manifest>

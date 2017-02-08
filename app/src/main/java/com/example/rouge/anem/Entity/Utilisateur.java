@@ -1,5 +1,6 @@
 package com.example.rouge.anem.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
  * Created by rouge on 23/11/2016.
  */
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
     private int id;
     private String nom;
     private String prenom;
@@ -15,7 +16,7 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, String email) {
+    public Utilisateur (int id, String nom, String prenom, String email) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
