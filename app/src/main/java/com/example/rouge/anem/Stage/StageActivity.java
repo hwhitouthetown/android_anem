@@ -56,12 +56,19 @@ public class StageActivity extends Fragment {
         patientAdapter = new StageAdapter(getContext(), listeStage);
         listView.setAdapter(patientAdapter);
         try {
-            if (this.entreprise == null){
+            if (this.entreprise == null && this.etudiant == null){
                 String[] mesparams = {Util.getProperty("url.stage", getContext())};
                 AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
             }else{
-                String[] mesparams = {Util.getProperty("url.stagebyentreprise", getContext())+entreprise.getId()};
-                AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                if (this.etudiant == null){
+                    String[] mesparams = {Util.getProperty("url.stagebyentreprise", getContext())+entreprise.getId()};
+                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                }
+                else{
+                    String[] mesparams = {Util.getProperty("url.stagebyetudiant", getContext())+etudiant.getId()};
+                    AsyncTask<String, String, Boolean> mThreadCon = new Api(this.callback, getContext()).execute(mesparams);
+                }
+
             }
 
 

@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.flFragments, new WelcomePageActivity())
+                .commit();
     }
 
     private SharedPreferences getGcmPreferences(Context context) {
@@ -138,7 +142,6 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.flFragments, new StageActivity())
                     .commit();
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
