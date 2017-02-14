@@ -55,6 +55,7 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
         RadioButton button;
         for(int i = 0; i < etats.length; i++) {
             button = new RadioButton(this);
+            button.setChecked(i == 0);
             button.setText(etats[i]);
             group.addView(button);
         }
@@ -176,25 +177,56 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
     }
 
     public void save(){
-        EditText intitule = (EditText) findViewById(R.id.intitule);
-        stage.setIntitule(intitule.getText().toString());
-        EditText desc = (EditText) findViewById(R.id.textDesc);
-        stage.setDescription(desc.getText().toString());
-        stage.setEtat(etats[group.getCheckedRadioButtonId()]);
-        stage.setCompetences(mCompetences);
-        stage.setEtudiant(AuthenticatedUser.getInstance());
-        Callback callback = new Callback<Void>() {
-            public Void call() {
-                didReceivedData();
-                return null;
+        if (!checkFields()) {
+            EditText intitule = (EditText) findViewById(R.id.intitule);
+            stage.setIntitule(intitule.getText().toString());
+            EditText desc = (EditText) findViewById(R.id.textDesc);
+            stage.setDescription(desc.getText().toString());
+            stage.setEtat(etats[group.getCheckedRadioButtonId() - 1]);
+            stage.setCompetences(mCompetences);
+            stage.setEtudiant(AuthenticatedUser.getInstance());
+            Callback callback = new Callback<Void>() {
+                public Void call() {
+                    didReceivedData();
+                    return null;
+                }
+            };
+            Api api = new Api(callback, this);
+            try {
+                stage.save(api, this);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        };
-        Api api = new Api(callback,this);
-        try {
-            stage.save(api,this);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+    }
+
+    public boolean checkFields(){
+        boolean error = false;
+        EditText intitule = (EditText) findViewById(R.id.intitule);
+        EditText desc = (EditText) findViewById(R.id.textDesc);
+        EditText entreprise = (EditText) findViewById(R.id.textEntreprise);
+        TextView comp = (TextView) findViewById(R.id.textComp);
+        if (TextUtils.isEmpty(intitule.getText().toString())) {
+            intitule.setError("Veuillez saisir un intitulé");
+            error = true;
+        }
+        if (TextUtils.isEmpty(desc.getText().toString())) {
+            desc.setError("Veuillez saisir une courte description");
+            error = true;
+        }
+        if (TextUtils.isEmpty(entreprise.getText().toString())) {
+            entreprise.setError("Veuillez sélectionner une entreprise d'accueil");
+            error = true;
+        }
+
+        if (mCompetences.size() == 0){
+            comp.setError("Sélectionner au moins une compétence");
+            error = true;
+        }
+
+
+        return error;
+
     }
 
 }

@@ -70,7 +70,7 @@ public class Stage implements Serializable{
         HashMap<String,String> param = getStageReadyForWs();
         api.setMethod("POST");
         api.setParameters(param);
-        String[] url = {Util.getProperty("url.update_entreprise", context)};
+        String[] url = {Util.getProperty("url.update_stage", context)};
         api.execute(url);
     }
 

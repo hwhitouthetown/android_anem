@@ -73,7 +73,7 @@
                             android:scaleType="fitCenter" />
 
             <TextView
-                android:text="Contacts"
+                android:text="Contact"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView6"
@@ -113,7 +113,7 @@
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:text="Contacts"
+                android:text="Stage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView8"
