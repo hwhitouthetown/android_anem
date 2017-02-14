@@ -77,7 +77,7 @@ public class Stage implements Serializable{
     public String getCompetenceToStringWs(){
         String vretour = "";
         for (Competence e: this.competences){
-            vretour += "&competences[]="+e.getTitre();
+            vretour += "&competences[]="+String.valueOf(e.getId());
         }
         return vretour;
     }

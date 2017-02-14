@@ -55,7 +55,6 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
         RadioButton button;
         for(int i = 0; i < etats.length; i++) {
             button = new RadioButton(this);
-            button.setChecked(i == 0);
             button.setText(etats[i]);
             group.addView(button);
         }
@@ -187,7 +186,7 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
             stage.setEtudiant(AuthenticatedUser.getInstance());
             Callback callback = new Callback<Void>() {
                 public Void call() {
-                    didReceivedData();
+                    finish();
                     return null;
                 }
             };
