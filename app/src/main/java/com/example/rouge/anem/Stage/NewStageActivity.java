@@ -180,12 +180,12 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
         stage.setIntitule(intitule.getText().toString());
         EditText desc = (EditText) findViewById(R.id.textDesc);
         stage.setDescription(desc.getText().toString());
-        stage.setEtat(etats[group.getCheckedRadioButtonId()]);
+        stage.setEtat(etats[group.getCheckedRadioButtonId()-1]);
         stage.setCompetences(mCompetences);
         stage.setEtudiant(AuthenticatedUser.getInstance());
         Callback callback = new Callback<Void>() {
             public Void call() {
-                didReceivedData();
+                finish();
                 return null;
             }
         };
