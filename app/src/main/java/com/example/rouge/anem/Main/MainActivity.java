@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_boutique) {
 
-            startActivity(new Intent(MainActivity.this, ShopActivity.class));
+            startActivity(new Intent(this, ShopActivity.class));
 
         } else if (id == R.id.nav_gallery) {
             Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
