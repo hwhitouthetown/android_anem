@@ -37,12 +37,14 @@ public class Api extends AsyncTask<String, String, Boolean> {
     }
 
     public Api(Callback<Void> callback, HashMap<String,String> parameters, String method, Context context){
+
         this.callback = callback;
         this.setParameters(parameters);
         this.setMethod(method);
         this.jsonParser = new JsonParser();
         this.progress = new ProgressDialog(context);
     }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();

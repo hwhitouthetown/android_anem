@@ -3,7 +3,9 @@ package com.example.rouge.anem.Stage;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class StageActivity extends Fragment {
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.activity_stage, container, false);
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onStart() {
         super.onStart();
