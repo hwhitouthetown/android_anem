@@ -31,7 +31,8 @@
             android:paddingLeft="5dip"
             android:layout_weight="1"
             android:textColor="@color/common_google_signin_btn_text_light_focused"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:paddingBottom="10sp"/>
         <TextView
             android:id="@+id/vueAdresse"
             android:layout_width="match_parent"

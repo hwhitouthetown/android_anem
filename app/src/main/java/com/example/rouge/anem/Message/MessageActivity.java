@@ -82,23 +82,6 @@ public class MessageActivity extends AppCompatActivity {
         messageAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.plus, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_plus) {
-            startActivity(new Intent(this, NewEntrepriseActivity.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void sent(){
         Callback callback= new Callback<Void>() {
             public Void call() {

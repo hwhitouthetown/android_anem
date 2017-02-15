@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -28,34 +29,29 @@ import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
 import com.example.rouge.anem.Tools.Util;
+import com.example.rouge.anem.View.SearchCompetenceView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NewStageActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class NewStageActivity extends AppCompatActivity{
     private Stage stage = new Stage();
     private EditText textEntreprise;
     private String[] etats = {"En attente","Validé", "Terminé"};
-    private ArrayList<Competence>  competences;
-    private ArrayList<Competence> mCompetences = new ArrayList<>();
     private RadioGroup group;
-    private Api api;
-    private Callback callback;
-    private SearchView mSearchView;
-    private ListView mListView;
-    private TextView listComp;
-    private ArrayAdapter<Competence> arrayAdapter;
+    private ArrayList<Button> buttons = new ArrayList<>();
+    private SearchCompetenceView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_stage);
         group = (RadioGroup) findViewById(R.id.choixEtat);
-        listComp = (TextView) findViewById(R.id.textComp);
         RadioButton button;
         for(int i = 0; i < etats.length; i++) {
             button = new RadioButton(this);
             button.setText(etats[i]);
+            buttons.add(button);
             group.addView(button);
         }
         textEntreprise = (EditText) findViewById(R.id.textEntreprise);
@@ -70,71 +66,10 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
                 }
             }
         });
-        refreshComp();
+        searchView = (SearchCompetenceView) findViewById(R.id.searchView);
 
     }
 
-    public void handleSearch(){
-        mSearchView = (SearchView) findViewById(R.id.search);
-        mListView = (ListView) findViewById(R.id.competences);
-        arrayAdapter = new ArrayAdapter<Competence>(this,
-                android.R.layout.simple_list_item_1,
-                competences);
-        mListView.setAdapter(arrayAdapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Competence c = arrayAdapter.getItem(position);
-                if (!mCompetences.contains(c)){
-                    mCompetences.add(c);
-                    didAddComp();
-                }
-            }
-        });
-        mListView.setTextFilterEnabled(true);
-        setupSearchView();
-    }
-
-    public void didAddComp(){
-        String s="";
-        for (Competence c:mCompetences){
-            s += c.getTitre() + "; ";
-        }
-        listComp.setText(s);
-    }
-
-    public void refreshComp(){
-        this.callback = new Callback<Void>() {
-            public Void call() {
-                didReceivedData();
-                return null;
-            }
-        };
-        try {
-            api = new Api(this.callback, this);
-            String[] mesparams = {Util.getProperty("url.competences", getBaseContext())};
-            api.execute(mesparams);
-        }catch(IOException i ){
-            Log.d("Erreur de propriété", i.toString());
-        }
-    }
-
-    private void setupSearchView() {
-        mSearchView.setIconifiedByDefault(false);
-        mSearchView.setOnQueryTextListener(this);
-        mSearchView.setSubmitButtonEnabled(true);
-        mSearchView.setQueryHint("Rechercher");
-    }
-
-    public boolean onQueryTextChange(String newText) {
-        if (TextUtils.isEmpty(newText)) {
-            mListView.clearTextFilter();
-        } else {
-            mListView.setFilterText(newText.toString());
-        }
-        return true;
-    }
 
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -169,11 +104,6 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
         }
     }
 
-    public void didReceivedData(){
-        ArrayList<HashMap<String,Object>> result = this.callback.getResult();
-        competences = Competence.getCompetencesFromWS(result);
-        handleSearch();
-    }
 
     public void save(){
         if (!checkFields()) {
@@ -181,8 +111,8 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
             stage.setIntitule(intitule.getText().toString());
             EditText desc = (EditText) findViewById(R.id.textDesc);
             stage.setDescription(desc.getText().toString());
-            stage.setEtat(etats[group.getCheckedRadioButtonId() - 1]);
-            stage.setCompetences(mCompetences);
+            stage.setEtat(etats[getCheckedEtat()]);
+            stage.setCompetences(searchView.getmCompetences());
             stage.setEtudiant(AuthenticatedUser.getInstance());
             Callback callback = new Callback<Void>() {
                 public Void call() {
@@ -218,14 +148,22 @@ public class NewStageActivity extends AppCompatActivity implements SearchView.On
             error = true;
         }
 
-        if (mCompetences.size() == 0){
-            comp.setError("Sélectionner au moins une compétence");
-            error = true;
-        }
+        error = searchView.checkComp() || error;
+
 
 
         return error;
 
+    }
+
+    private int getCheckedEtat(){
+        int checked = group.getCheckedRadioButtonId();
+        for(int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).getId() == checked){
+                return i;
+            }
+        }
+        return -1;
     }
 
 }

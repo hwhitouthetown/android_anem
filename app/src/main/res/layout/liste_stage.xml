@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="5dip"
         android:layout_weight="1"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:paddingBottom="10sp"/>
     <TextView
         android:id="@+id/vueCompetences"
         android:layout_width="match_parent"

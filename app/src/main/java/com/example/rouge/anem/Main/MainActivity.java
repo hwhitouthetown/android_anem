@@ -124,23 +124,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
 
-            startActivity(new Intent(MainActivity.this, ShopActivity.class));
-
+            openShop();
         } else if (id == R.id.nav_gallery) {
-            Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
-            startActivity(j);
+            openEtudiant();
         } else if (id == R.id.nav_slideshow) {
-            Intent i = new Intent(MainActivity.this, EntrepriseActivity.class);
-            startActivity(i);
+            openEntreprise();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_who) {
 
         } else if (id == R.id.stage) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.flFragments, new StageActivity())
-                    .commit();
+            openStage();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -171,5 +165,23 @@ public class MainActivity extends AppCompatActivity
 
             }
         }
+    }
+
+    public void openShop(){
+        startActivity(new Intent(MainActivity.this, ShopActivity.class));
+    }
+    public void openEtudiant(){
+        Intent j = new Intent(MainActivity.this, EtudiantActivity.class);
+        startActivity(j);
+    }
+    public void openEntreprise(){
+        Intent i = new Intent(MainActivity.this, EntrepriseActivity.class);
+        startActivity(i);
+    }
+    public void openStage(){
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.flFragments, new StageActivity())
+                .commit();
     }
 }

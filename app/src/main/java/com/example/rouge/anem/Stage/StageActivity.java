@@ -23,6 +23,7 @@ import com.example.rouge.anem.R;
 import com.example.rouge.anem.Tools.Api;
 import com.example.rouge.anem.Tools.Callback;
 import com.example.rouge.anem.Tools.Util;
+import com.example.rouge.anem.View.SearchCompetenceView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class StageActivity extends Fragment {
     private StageAdapter patientAdapter;
     private Entreprise entreprise;
     private Utilisateur etudiant;
+    private SearchCompetenceView searchView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,6 +91,9 @@ public class StageActivity extends Fragment {
                 startActivity(myIntent);
             }
         });
+        searchView = (SearchCompetenceView) getView().findViewById(R.id.searchView);
+        searchView.setVisibility(View.GONE);
+
     }
 
     public void didReceivedData(){
