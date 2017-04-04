@@ -23,13 +23,7 @@
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
             android:name=".GcmBroadcastReceiver"
@@ -55,9 +49,7 @@
 
         <activity android:name=".Entreprise.EntrepriseActivity" />
         <activity android:name=".Etudiant.EtudiantActivity" />
-        <activity android:name=".Stage.StageActivity" />
         <activity android:name=".Shop.ShopActivity" />
-        <activity android:name=".Entreprise.NewEntrepriseActivity" />
         <activity android:name=".Main.NotifyActivity" />
         <activity android:name=".Message.MessageActivity" />
         <activity
@@ -72,8 +64,15 @@
             android:name=".Etudiant.TabEtudiantActivity"
             android:label="@string/title_activity_tab_etudiant"
             android:parentActivityName=".Etudiant.EtudiantActivity" />
-        <activity android:name=".Entreprise.NewEntrepriseContainer" />
         <activity android:name=".Etudiant.NewEtudiantContainer" />
+        <activity android:name=".Main.RegisterActivity" />
+        <activity android:name=".Main.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Main.MyAccountActivity" />
         <activity android:name=".Stage.NewStageActivity"></activity>
     </application>
 

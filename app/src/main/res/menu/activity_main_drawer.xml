@@ -18,6 +18,15 @@
             android:id="@+id/stage"
             android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Stages" />
+        <item
+            android:id="@+id/monprofil"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Mon compte" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Se déconnecter" />
     </group>
 
     <item android:title="Les plus">

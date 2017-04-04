@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.stage) {
             openStage();
+        } else if (id == R.id.monprofil) {
+            Intent i = new Intent(MainActivity.this, MyAccountActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

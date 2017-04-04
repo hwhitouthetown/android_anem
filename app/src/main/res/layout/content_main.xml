@@ -24,7 +24,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/logo"
+                app:srcCompat="@drawable/logo_anem"
                 android:id="@+id/anem"
                 android:layout_weight="1"
                 android:background="#C0392B"
